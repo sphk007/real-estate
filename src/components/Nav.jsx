@@ -5,7 +5,6 @@ const Nav = ()=> {
      const [open, setOpen] = useState(false);
       const handleMenu =() => {
         setOpen((prev) => !prev);
-        console.log(open);
       };
     return (
       <header className="shadow-md max-w-screen-2xl	">
@@ -17,8 +16,8 @@ const Nav = ()=> {
           </div>
           <div>
           <form className="p-2 pl-4 bg-gray-200 rounded-full flex items-center justify-between ">
-                <input className=" mx-1 bg-transparent focus:outline-none w-20 sm:w-60" type="text" placeholder='search'/>
-                <FaSearch className='text-slate-600'/>
+                <input className=" mx-1 bg-transparent focus:outline-none w-max sm:w-80" type="text" placeholder='search'/>
+                <FaSearch className='text-slate-600 mr-2'/>
             </form>
           </div>
             
@@ -32,16 +31,21 @@ const Nav = ()=> {
             </ul>
             </div>
 
-            <div className='mr-2 flex sm:hidden'>
-              <button  type="button" onClick={handleMenu} className='inline-flex items-center justify-center rounded-md text-gray-600 hover:text-gray-600 focus:ring-2 focus:ring-offset-2 p-2'>
+            
+            
+        </nav>
+        <div className='flex justify-end'>
+
+        <div className='mr-2 flex sm:hidden  absolute right-4 top-4 '>
+              <button  type="button" onClick={handleMenu} className='inline-block items-center justify-center rounded-md text-gray-600 hover:text-gray-600 focus:ring-2 focus:ring-offset-2 p-2 '>
                 <span className='sr-only'>Menu</span>
                 {open == true ? <FaTimes className=''/>:<FaBars className=''/>}
               </button>
             </div>
             {open ? (
-              <div className='md:hidden flex relative '>
-                <ul className='block relative space-x-4 ml-10 text-slate-600 transition-all duration-300 ease-in'>
-                <li><Link path="">Home</Link></li>
+              <div className='md:hidden flex p-4 '>
+                <ul className='flex flex-col  gap-4 relative ml-10 text-slate-600 transition-all duration-300 ease-in'>
+                <li><Link path="" >Home</Link></li>
                 <li><Link path="">About</Link></li>
                 <li><Link path="">Services</Link></li>
                 <li><Link path="">Signup</Link>/<Link path="">Login</Link></li>
@@ -49,9 +53,8 @@ const Nav = ()=> {
             </ul>
               </div>
             ) : null}
-            
-        </nav>
-       
+        </div>
+
       </header>
     ) 
   }
