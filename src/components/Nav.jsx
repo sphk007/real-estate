@@ -1,40 +1,59 @@
-import React, { Component } from 'react'
+import React, { Component,useState } from 'react'
 import { Link } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa'
-import { IoMenu } from "react-icons/io5";
-class Nav extends Component {
-    
-  render() {
-    const Nav=()=>{
-        let[open,setOpen]=useState(false);
-    }
+import { FaSearch,FaBars,FaTimes } from 'react-icons/fa'
+const Nav = ()=> { 
+     const [open, setOpen] = useState(false);
+      const handleMenu =() => {
+        setOpen((prev) => !prev);
+        console.log(open);
+      };
     return (
-      <header class="bg-slate-200">
-        <nav  class="flex p-3 justify-between items-center max-w-6xl mx-auto ">
-        <div  onclick={()=>setOpen(!open)} className='text-slate-600 text-3xl absolute right-7 cursor-pointer md:hidden'>
-            <ion-icon name={open?'close':'menu'}></ion-icon>
-        </div>
-            <h1 class="">
-                <span class="font-medium text-slate-600">LOGO</span>
+      <header className="shadow-md max-w-screen-2xl	">
+        <nav  className="flex p-3 justify-between items-center max-w-6xl mx-auto ">
+          <div>
+          <h1>
+                <span className="font-medium text-slate-600">LOGO</span>
             </h1>
-            <form class="p-2 bg-slate-100 rounded-full flex items-center justify-between ">
+          </div>
+          <div>
+          <form className="p-2 pl-4 bg-gray-200 rounded-full flex items-center justify-between ">
                 <input className=" mx-1 bg-transparent focus:outline-none w-20 sm:w-60" type="text" placeholder='search'/>
-                <FaSearch onClick={()=>setOpen(!open)} className='text-slate-600'/>
+                <FaSearch className='text-slate-600'/>
             </form>
+          </div>
             
-            <ul className='p-2 absolute bg-slate-200 md:z-auto z-[-1] md:static md:pb-auto md:flex md:items-center md:gap-10 text-slate-600 
-            left-0 pl-4 md:pl-auto transition-all duration-300 ease-in'>
+            <div>
+            <ul className=' hidden sm:flex sm:gap-8  text-slate-600 transition-all duration-300 ease-in'>
                 <li><Link path="">Home</Link></li>
                 <li><Link path="">About</Link></li>
+                <li><Link path="">Services</Link></li>
                 <li><Link path="">Signup</Link>/<Link path="">Login</Link></li>
 
             </ul>
+            </div>
+
+            <div className='mr-2 flex sm:hidden'>
+              <button  type="button" onClick={handleMenu} className='inline-flex items-center justify-center rounded-md text-gray-600 hover:text-gray-600 focus:ring-2 focus:ring-offset-2 p-2'>
+                <span className='sr-only'>Menu</span>
+                {open == true ? <FaTimes className=''/>:<FaBars className=''/>}
+              </button>
+            </div>
+            {open ? (
+              <div className='md:hidden flex relative '>
+                <ul className='block relative space-x-4 ml-10 text-slate-600 transition-all duration-300 ease-in'>
+                <li><Link path="">Home</Link></li>
+                <li><Link path="">About</Link></li>
+                <li><Link path="">Services</Link></li>
+                <li><Link path="">Signup</Link>/<Link path="">Login</Link></li>
+
+            </ul>
+              </div>
+            ) : null}
             
         </nav>
        
       </header>
     ) 
   }
-}
 
 export default Nav
