@@ -57,6 +57,13 @@ const Signup = () => {
                   className="flex flex-col gap-6 w-10/12"
                 >
                   <input
+                    type="text"
+                    placeholder="Enter username"
+                    className="border bg-gray-200 rounded-md py-2 px-2 focus:outline-none"
+                    id="username"
+                    onChange={handleChange}
+                  />
+                  <input
                     type="email"
                     placeholder="Enter email"
                     className="border bg-gray-200 rounded-md py-2 px-2 focus:outline-none"
