@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import image from "../assets/img/signup.jpg";
 import { useState } from "react";
-import { set } from "mongoose";
+import OAuth from "../components/OAuth";
 
 const Signup = () => {
   const [error, setError] = useState(false);
@@ -84,6 +84,7 @@ const Signup = () => {
                   >
                     {loading ? "loading..." : "SignUp"}
                   </button>
+                  <OAuth />
                   <div className="flex gap-1">
                     <p>Have a account?</p>
                     <Link

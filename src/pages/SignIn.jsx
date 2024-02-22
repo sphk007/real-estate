@@ -5,6 +5,7 @@ import image from "../assets/img/signup.jpg";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart,signInSuccess,signInFailure } from "../redux/user/userSlice";
+import OAuth from "../components/OAuth";
 
 const signIn = () => {
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const signIn = () => {
                   >
                     {loading ? "loading..." : "SignIn"}
                   </button>
+                  <OAuth />
                   <div className="flex gap-1">
                     <p>Dont have a account?</p>
                     <Link
