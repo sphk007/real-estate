@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import image from "../assets/img/signup.jpg";
 import { useState } from "react";
-import { set } from "mongoose";
+import { useDispatch, useSelector } from "react-redux";
+import { signInStart,signInSuccess,signInFailure } from "../redux/user/userSlice";
 
 const signIn = () => {
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const{ loading,error}=useSelector((state)=>state.user)
+  
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({});
@@ -19,6 +21,7 @@ const signIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      dispatch(signInStart());
       const res = await fetch("http://localhost:4000/api/auth/signin", {
         method: "POST",
         headers: {
@@ -29,16 +32,13 @@ const signIn = () => {
       const data = await res.json();
       console.log(data);
       if (data.success == false) {
-        setLoading(false);
-        setError(data.message);
+        dispatch(signInFailure(data.message));
         return;
       }
-      setLoading(false);
-      setError(null);
+      dispatch(signInSuccess(data));
       navigate("/");
     } catch (error) {
-      setLoading(false);
-      setError(error.message);
+      dispatch(signInFailure(data.message));
     }
   };
   return (
