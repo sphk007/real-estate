@@ -4,13 +4,18 @@ import { Link } from "react-router-dom";
 import image from "../assets/img/signup.jpg";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signInStart,signInSuccess,signInFailure } from "../redux/user/userSlice";
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
+// import Cookies from "js-cookies"
 
 const signIn = () => {
   const dispatch = useDispatch();
-  const{ loading,error}=useSelector((state)=>state.user)
-  
+  const { loading, error } = useSelector((state) => state.user);
+
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({});
@@ -31,7 +36,8 @@ const signIn = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
+      // Cookies.setItem('token1','sgrty')
       if (data.success == false) {
         dispatch(signInFailure(data.message));
         return;
@@ -44,15 +50,15 @@ const signIn = () => {
   };
   return (
     <>
-      <div className="min-h-screen py-20">
+      <div className="min-h-screen py-14">
         <div className="mx-auto ">
-          <div className="flex w-11/12 p-4 bg-white rounded-xl mx-auto shadow-2xl overflow-hidden">
-            <div className="flex md:md-h-auto md:flex-row flex-col rounded-xl overflow-hidden">
-              <div className="flex items-center justify-center md:w-1/2 ">
-                <img src={image} className="md:min-h-full"></img>
+          <div className="flex w-11/12 p-4 bg-white rounded-xl mx-auto shadow-[0_3px_10px_rgb(0,0,0,0.2)] overflow-hidden ">
+            <div className="flex md:flex-row flex-col rounded-xl overflow-hidden">
+              <div className="flex md:w-3/4  ">
+                <img src={image} className="object-cover overflow-hidden"></img>
               </div>
               <div className=" flex items-center flex-col justify-center md:w-1/2 py-10 px-10">
-                <h1 className="text-sixe-xl p-3 pb-8">SignIn</h1>
+                <h1 className="text-size-xl p-3 pb-8">SignIn</h1>
                 <form
                   onSubmit={handleSubmit}
                   className="flex flex-col gap-6 w-10/12"

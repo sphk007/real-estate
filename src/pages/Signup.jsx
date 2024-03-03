@@ -46,10 +46,10 @@ const Signup = () => {
     <>
       <div className="min-h-screen py-20">
         <div className="mx-auto ">
-          <div className="flex w-11/12 p-4 bg-white rounded-xl mx-auto shadow-2xl overflow-hidden">
-            <div className="flex md:md-h-auto md:flex-row flex-col rounded-xl overflow-hidden">
-              <div className="flex items-center justify-center md:w-1/2 ">
-                <img src={image} className="md:min-h-full"></img>
+          <div className="flex w-11/12 p-4 bg-white rounded-xl mx-auto shadow-[0_3px_10px_rgb(0,0,0,0.2)] overflow-hidden ">
+            <div className="flex md:flex-row flex-col rounded-xl overflow-hidden">
+              <div className="flex md:w-3/4 ">
+                <img src={image} className="object-cover"></img>
               </div>
               <div className=" flex items-center flex-col justify-center md:w-1/2 py-10 px-10">
                 <h1 className="text-sixe-xl p-3 pb-8">SignUp</h1>

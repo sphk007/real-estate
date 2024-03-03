@@ -1,7 +1,11 @@
-import React, { Component, useState } from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import {  useSelector } from "react-redux";
+
 const Nav = () => {
+
+const {currentUser}=useSelector((state)=> state.user);
   const [open, setOpen] = useState(false);
   const handleMenu = () => {
     setOpen((prev) => !prev);
@@ -37,7 +41,12 @@ const Nav = () => {
               <Link to="">Services</Link>
             </li>
             <li >
-              <Link to="/Signup" className="hover:underline">Signup</Link>/<Link to="/SignIn" className="hover:underline">Login</Link>
+              <Link to='/Profile'>
+                {currentUser ? (
+                  <div className="flex gap-2"><img src={currentUser.avatar} alt="profile" className="rounded-full object-cover h-7 w-7" /><div>{currentUser.username}</div></div>
+                ):(<div><Link to="/Signup" className="hover:underline">Signup</Link>/<Link to="/SignIn" className="hover:underline">Login</Link></div>
+)}
+              </Link>
             </li>
           </ul>
         </div>
@@ -65,9 +74,13 @@ const Nav = () => {
               <li>
                 <Link to="" className="hover:underline">Services</Link>
               </li>
-              <li>
-                <Link to="/Signup" className="hover:underline">Signup</Link>/<Link to="/SignIn" className="hover:underline">Login</Link>
-              </li>
+              <li >
+                {currentUser ? (
+                  <div className="flex gap-2"><img src={currentUser.avatar} alt="profile" className="rounded-full object-cover h-7 w-7" /><Link to="/Profile"><div>{currentUser.username}</div></Link></div>
+                ):(<div><Link to="/Signup" className="hover:underline">Signup</Link>/<Link to="/SignIn" className="hover:underline">Login</Link></div>
+                )}
+              
+            </li>
             </ul>
           </div>
         ) : null}
