@@ -28,7 +28,7 @@ const signIn = () => {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await fetch("http://localhost:4000/api/auth/signin", {
+      const res = await fetch(`/api/auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,14 +38,14 @@ const signIn = () => {
       const data = await res.json();
       // console.log(data);
       // Cookies.setItem('token1','sgrty')
-      if (data.success == false) {
+      if (data.success === false) {
         dispatch(signInFailure(data.message));
         return;
       }
       dispatch(signInSuccess(data));
       navigate("/");
     } catch (error) {
-      dispatch(signInFailure(data.message));
+      dispatch(signInFailure(error.message));
     }
   };
   return (
