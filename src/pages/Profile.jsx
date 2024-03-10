@@ -20,6 +20,8 @@ import {
   signoutSuccess,
 } from "../redux/user/userSlice.js";
 import { Link } from "react-router-dom";
+import { GoSignOut } from "react-icons/go";
+import { MdOutlineDeleteSweep } from "react-icons/md";
 // import Listing from "../../../api/models/list.model.js";
 
 const Profile = () => {
@@ -173,9 +175,9 @@ const Profile = () => {
 
   return (
     <>
-      <div className="p-3 max-w-lg mx-auto">
+      <div className="p-3 max-w-xl mx-auto">
         <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <form className="flex flex-col sm:items-center sm:flex-row gap-3">
           <input
             onChange={(e) => setFile(e.target.files[0])}
             type="file"
@@ -183,13 +185,39 @@ const Profile = () => {
             hidden
             accept="image/*"
           />
-
+          
           <img
             src={formData.avatar || currentUser.avatar}
             onClick={() => fileRef.current.click()}
-            className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2"
+            className="rounded-full h-28 w-28 sm:h-56 sm:w-56 object-cover cursor-pointer self-center mt-2"
           />
-          <p className="text-sm self-center">
+          <div className=" w-full flex flex-col gap-3">
+          <input
+            id="username"
+            type="text"
+            defaultValue={currentUser.username}
+            onChange={handleChange}
+            placeholder="username"
+            className="border-2 p-3 rounded-lg"
+          />
+          <input
+            id="email"
+            type="email"
+            defaultValue={currentUser.email}
+            onChange={handleChange}
+            placeholder="Email"
+            className="border-2 p-3 rounded-lg"
+          />
+          <input
+            id="password"
+            type="password"
+            placeholder="Change password"
+            onChange={handleChange}
+            className="border-2 p-3 rounded-lg"
+          />
+          </div>
+        </form>
+        <p className="text-sm self-center mt-2">
             {fileUploadError ? (
               <span className="text-red-700">
                 Error Image upload (image must be less than 2 mb)
@@ -204,43 +232,24 @@ const Profile = () => {
               ""
             )}
           </p>
-          <input
-            id="username"
-            type="text"
-            defaultValue={currentUser.username}
-            onChange={handleChange}
-            placeholder="username"
-            className="border p-3 rounded-lg"
-          />
-          <input
-            id="email"
-            type="email"
-            defaultValue={currentUser.email}
-            onChange={handleChange}
-            placeholder="Email"
-            className="border p-3 rounded-lg"
-          />
-          <input
-            id="password"
-            type="password"
-            placeholder="password"
-            onChange={handleChange}
-            className="border p-3 rounded-lg"
-          />
           <button
             disabled={loading}
-            className="bg-slate-600 text-white p-3 rounded-lg uppercase text-center hover:opacity-50"
+            onClick={handleSubmit}
+            className="w-full mt-5 bg-violet-900 self-end text-white p-[1rem] rounded-lg uppercase text-center hover:opacity-50"
             type="submit"
           >
             {loading ? "loading..." : "Update"}
           </button>
+        <button className="w-full mt-3 text-violet-900 p-3 rounded-lg uppercase text-center hover:opacity-95 border-solid border-2 border-violet-900">
           <Link
             to={"/create-listing"}
-            className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95"
           >
-            create listing
+            create Property
           </Link>
-        </form>
+        </button>
+        <button onClick={handleShowListings} className="w-full mt-3 text-violet-900 p-3 rounded-lg uppercase text-center hover:opacity-95 border-solid border-2 border-violet-900">
+          My Property
+        </button>
 
         <p className="text-red-700 mt-5">{error ? error : ""}</p>
         <p className="text-green-700 mt-5">
@@ -249,24 +258,23 @@ const Profile = () => {
         <div className="flex justify-between mt-5">
           <span
             onClick={handleDeleteUser}
-            className="text-red-700 cursor-pointer"
+            className="flex gap-1 items-center text-red-700 cursor-pointer"
           >
+            <MdOutlineDeleteSweep />
             Delete Account
           </span>
-          <span onClick={handlesignout} className="text-red-700 cursor-pointer">
-            sign out
+          <span onClick={handlesignout} className="flex gap-1 items-center text-red-700 cursor-pointer ">
+            sign out <GoSignOut />
           </span>
         </div>
-        <button onClick={handleShowListings} className="text-green-700 w-full">
-          Show List
-        </button>
+        
         <p className="text-red-700 mt-5">
           {showListingsError ? "error showing listing" : ""}
         </p>
         {userListings && userListings.length > 0 && (
           <div className="flex flex-col gap-4">
             <h1 className="text-center mt-7 text-2xl font-semibold">
-              Your Listings
+              Your Products
             </h1>
             {userListings.map((listing) => (
               <div

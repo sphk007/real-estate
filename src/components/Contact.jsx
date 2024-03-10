@@ -60,6 +60,7 @@ const Contact = ({ listing }) => {
             </Link>
           </div>
         )}
+        
       </div>
     </>
   );

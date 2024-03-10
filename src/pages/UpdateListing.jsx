@@ -120,6 +120,12 @@ console.log(formData);
   };
 
   const handleChange = (e) => {
+    if(e.target.id==="property_type"){
+      setFormData({
+        ...formData,
+        [e.target.id]:e.target.value,
+      });
+    }
     if (e.target.id === "sale" || e.target.id === "rent") {
       setFormData({
         ...formData,
@@ -141,7 +147,8 @@ console.log(formData);
     if (
       e.target.type == "number" ||
       e.target.type == "text" ||
-      e.target.type == "textarea"
+      e.target.type == "textarea" ||
+      e.target.type == "select"
     ) {
       setFormData({
         ...formData,
@@ -173,6 +180,9 @@ console.log(formData);
         body: JSON.stringify({
           ...formData,
           userRef: currentUser._id,
+          avatar: currentUser.avatar,
+          landlordname:currentUser.username,
+          landlordemail:currentUser.email,
         }),
       });
 
@@ -184,7 +194,7 @@ console.log(formData);
         return;
       }
 
-      navigate(`/listing/${data._id}`);
+      navigate(`/Profile`);
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -209,6 +219,13 @@ console.log(formData);
             onChange={handleChange}
             value={formData.name}
           />
+           <select type="text" id="property_type" class="border p-3 border rounded-md w-full" onChange={handleChange} required>
+            <option value="PropertyType">Property-Type</option>
+            <option value="house">House</option>
+            <option value="apartment">Apartment</option>
+            <option value="condo">Condo</option>
+
+          </select>  
           <textarea
             type="text"
             placeholder="Description"
@@ -320,7 +337,7 @@ console.log(formData);
                 value={formData.regularPrice}
               />
               <div className="flex flex-col items-center">
-                <p>Regular price</p>
+                <p>Price</p>
               </div>
             </div>
             {formData.offer && (
@@ -366,7 +383,7 @@ console.log(formData);
               disabled={uploading}
               onClick={handleImageSubmit}
               type="button"
-              className="p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
+              className="p-3 text-violet-900 border-2 border-violet-900 rounded uppercase hover:shadow-lg disabled:opacity-80"
             >
               {uploading ? "Uploading..." : "Upload"}
             </button>
@@ -396,9 +413,9 @@ console.log(formData);
             ))}
           <button
             disabled={loading || uploading}
-            className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            className="p-3 bg-violet-900 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
           >
-            {loading ? "Updating..." : "Update Listing"}
+            {loading ? "Updating..." : "Update Property"}
           </button>
           {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>

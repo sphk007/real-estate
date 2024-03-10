@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   getDownloadURL,
   getStorage,
@@ -14,6 +14,7 @@ const CreateListing = () => {
   const [formData, setFormData] = useState({
     imageURL: [],
     name: "",
+    property_type:"",
     description: "",
     address: "",
     type: "rent",
@@ -46,7 +47,7 @@ const CreateListing = () => {
 
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageURL.length < 7) {
-      setUploadsInProgress(true); 
+      setUploadsInProgress(true);
       setUploading(true);
       setImageUploadError(false);
       const promises = [];
@@ -56,7 +57,7 @@ const CreateListing = () => {
       }
       Promise.all(promises)
         .then((urls) => {
-          console.log("Uploaded Urls:",urls);
+          console.log("Uploaded Urls:", urls);
           setFormData({
             ...formData,
             imageURL: formData.imageURL.concat(urls),
@@ -110,6 +111,14 @@ const CreateListing = () => {
   };
 
   const handleChange = (e) => {
+  
+    if(e.target.id === "property_type"){
+      
+      setFormData({
+        ...formData,
+        [e.target.id]:e.target.value,
+      })
+    }
     if (e.target.id === "sale" || e.target.id === "rent") {
       setFormData({
         ...formData,
@@ -129,9 +138,10 @@ const CreateListing = () => {
     }
 
     if (
-      e.target.type == "number" ||
-      e.target.type == "text" ||
-      e.target.type == "textarea"
+      e.target.type === "number" ||
+      e.target.type === "text" ||
+      e.target.type === "textarea" ||
+      e.target.type === "select"
     ) {
       setFormData({
         ...formData,
@@ -163,6 +173,9 @@ const CreateListing = () => {
         body: JSON.stringify({
           ...formData,
           userRef: currentUser._id,
+          avatar: currentUser.avatar,
+          landlordname:currentUser.username,
+          landlordemail:currentUser.email,
         }),
       });
 
@@ -174,7 +187,7 @@ const CreateListing = () => {
         return;
       }
 
-      navigate(`/listing/${data._id}`);
+      navigate(`/Profile`);
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -199,7 +212,13 @@ const CreateListing = () => {
             onChange={handleChange}
             value={formData.name}
           />
-          <textarea
+          <select type="select" id="property_type" class="border p-3 border rounded-md w-full" onChange={handleChange} required>
+            <option value="PropertyType">Property-Type</option>
+            <option value="house">House</option>
+            <option value="apartment">Apartment</option>
+            <option value="condo">Condo</option>
+          </select>         
+           <textarea
             type="text"
             placeholder="Description"
             className="border p-3 rounded-lg"
@@ -310,7 +329,7 @@ const CreateListing = () => {
                 value={formData.regularPrice}
               />
               <div className="flex flex-col items-center">
-                <p>Regular price</p>
+                <p>Price</p>
               </div>
             </div>
             {formData.offer && (
@@ -356,7 +375,7 @@ const CreateListing = () => {
               disabled={uploading}
               onClick={handleImageSubmit}
               type="button"
-              className="p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
+              className="p-3 text-violet-900 border-2 border-violet-900 rounded uppercase hover:shadow-lg disabled:opacity-80"
             >
               {uploading ? "Uploading..." : "Upload"}
             </button>
@@ -386,9 +405,9 @@ const CreateListing = () => {
             ))}
           <button
             disabled={loading || uploading}
-            className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            className="p-3 bg-violet-900 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
           >
-            {loading ? "Creating..." : "Create Listing"}
+            {loading ? "Creating..." : "Create Property"}
           </button>
           {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>

@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import { MdLocationOn } from 'react-icons/md';
+import { FaShare, FaParking, FaChair, FaBed, FaBath, FaMapMarkerAlt } from "react-icons/fa";
+import { FaHouse, FaP } from "react-icons/fa6";
+import { FcLike } from "react-icons/fc";
+import { CiHeart } from "react-icons/ci";
 
 export default function ListingItem({ listing }) {
   return (
-    <div className='bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]'>
+    <div className='relative bg-white shadow-[0_3px_10px_rgb(0,0,0,0.5)] hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]'>
       <Link to={`/listing/${listing._id}`}>
+      <button className='absolute top-[16px] right-[18px]  bg-white rounded-full p-2 z-10'><CiHeart /></button>
         <img
           src={
             listing.imageURL[0] ||
@@ -17,6 +22,18 @@ export default function ListingItem({ listing }) {
           <p className='truncate text-lg font-semibold text-slate-700'>
             {listing.name}
           </p>
+          <div className='flex gap-x-2 text-sm mt-3'>
+                    <div className='flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg'><FaHouse />{listing.property_type}</div>
+                    <p className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+                      {listing.type === "rent" ? "For Rent" : "For Sale"}
+                    </p>
+                    {listing.offer && (
+                      <p className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+                        ${+listing.regularPrice - +listing.discountPrice} OFF
+                      </p>
+                    )}
+                    {/* <div className='bg-violet-500 text-white px-3 rounded-full'>house country</div> */}
+                  </div>
           <div className='flex items-center gap-1'>
             <MdLocationOn className='h-4 w-4 text-green-700' />
             <p className='text-sm text-gray-600 truncate w-full'>
@@ -26,14 +43,14 @@ export default function ListingItem({ listing }) {
           <p className='text-sm text-gray-600 line-clamp-2'>
             {listing.description}
           </p>
-          <p className='text-slate-500 mt-2 font-semibold '>
+          <p className='text-slate-500 mt-1 font-semibold '>
             $
             {listing.offer
               ? listing.discountPrice.toLocaleString('en-US')
               : listing.regularPrice.toLocaleString('en-US')}
             {listing.type === 'rent' && ' / month'}
           </p>
-          <div className='text-slate-700 flex gap-4'>
+          {/* <div className='text-slate-700 flex gap-4'>
             <div className='font-bold text-xs'>
               {listing.bedrooms > 1
                 ? `${listing.bedrooms} beds `
@@ -44,7 +61,29 @@ export default function ListingItem({ listing }) {
                 ? `${listing.bathrooms} baths `
                 : `${listing.bathrooms} bath `}
             </div>
-          </div>
+          </div> */}
+          <div className='flex gap-2 text-violet-700 mt-1'>
+                    <div className='  flex gap-1 items-center'>
+                      <FaBed className='text-xs' />
+                      <div className='text-xs'>{listing.bedrooms > 1
+                        ? `${listing.bedrooms} beds `
+                        : `${listing.bedrooms} bed `}</div>
+                    </div>
+                    <div className='  flex gap-1 items-center'>
+                      <FaBath className='text-xs' />
+                      <div className='text-xs'>{listing.bathrooms > 1
+                        ? `${listing.bathrooms} baths `
+                        : `${listing.bathrooms} bath `}</div>
+                    </div>
+                    <div className='  flex gap-1 items-center'>
+                      <FaParking className='text-xs' />
+                      <div className='text-xs'> {listing.parking ? "Parking spot" : "No Parking"}</div>
+                    </div>
+                    <div className='  flex gap-1 items-center'>
+                      <FaChair className='text-xs' />
+                      <div className='text-xs'>{listing.furnished ? "Furnished" : "Unfurnished"}</div>
+                    </div>
+                  </div>
         </div>
       </Link>
     </div>

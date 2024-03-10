@@ -135,29 +135,29 @@ export default function Search() {
       <div className='p-7  border-b-2 md:border-r-2 md:min-h-screen'>
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
           <div className='flex items-center gap-2'>
-            <label className='whitespace-nowrap font-semibold'>
+            <label className='text-violet-800 whitespace-nowrap font-semibold'>
               Search Term:
             </label>
             <input
               type='text'
               id='searchTerm'
               placeholder='Search...'
-              className='border rounded-lg p-3 w-full'
+              className='border rounded-full p-3 w-full bg-violet-200'
               value={sidebardata.searchTerm}
               onChange={handleChange}
             />
           </div>
           <div className='flex gap-2 flex-wrap items-center'>
-            <label className='font-semibold'>Type:</label>
-            <div className='flex gap-2'>
+            <label className='font-semibold text-violet-800'>Type:</label>
+            <div className='flex gap-2 '>
               <input
                 type='checkbox'
                 id='all'
-                className='w-5'
+                className='w-5 '
                 onChange={handleChange}
                 checked={sidebardata.type === 'all'}
               />
-              <span>Rent & Sale</span>
+              <span className='text-violet-800'>Rent & Sale</span>
             </div>
             <div className='flex gap-2'>
               <input
@@ -167,7 +167,7 @@ export default function Search() {
                 onChange={handleChange}
                 checked={sidebardata.type === 'rent'}
               />
-              <span>Rent</span>
+              <span className='text-violet-800'>Rent</span>
             </div>
             <div className='flex gap-2'>
               <input
@@ -177,7 +177,7 @@ export default function Search() {
                 onChange={handleChange}
                 checked={sidebardata.type === 'sale'}
               />
-              <span>Sale</span>
+              <span className='text-violet-800'>Sale</span>
             </div>
             <div className='flex gap-2'>
               <input
@@ -187,11 +187,11 @@ export default function Search() {
                 onChange={handleChange}
                 checked={sidebardata.offer}
               />
-              <span>Offer</span>
+              <span className='text-violet-800'>Offer</span>
             </div>
           </div>
           <div className='flex gap-2 flex-wrap items-center'>
-            <label className='font-semibold'>Amenities:</label>
+            <label className='text-violet-800 font-semibold'>Amenities:</label>
             <div className='flex gap-2'>
               <input
                 type='checkbox'
@@ -200,7 +200,7 @@ export default function Search() {
                 onChange={handleChange}
                 checked={sidebardata.parking}
               />
-              <span>Parking</span>
+              <span className='text-violet-800'>Parking</span>
             </div>
             <div className='flex gap-2'>
               <input
@@ -210,11 +210,11 @@ export default function Search() {
                 onChange={handleChange}
                 checked={sidebardata.furnished}
               />
-              <span>Furnished</span>
+              <span className='text-violet-800'>Furnished</span>
             </div>
           </div>
           <div className='flex items-center gap-2'>
-            <label className='font-semibold'>Sort:</label>
+            <label className='text-violet-800 font-semibold'>Sort:</label>
             <select
               onChange={handleChange}
               defaultValue={'created_at_desc'}
@@ -227,15 +227,15 @@ export default function Search() {
               <option value='createdAt_asc'>Oldest</option>
             </select>
           </div>
-          <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'>
+          <button className='bg-violet-900 text-white p-3 rounded-lg uppercase hover:opacity-95'>
             Search
           </button>
         </form>
       </div>
       <div className='flex-1'>
-        <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>
+        {/* <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>
           Listing results:
-        </h1>
+        </h1> */}
 
 
         <div className='p-7 flex flex-wrap gap-4'>
