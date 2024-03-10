@@ -1,15 +1,33 @@
-import React, {  useState } from "react";
-import { Link } from "react-router-dom";
+import React, {  useEffect, useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import {  useSelector } from "react-redux";
 
 const Nav = () => {
-
+const navigate=useNavigate();
 const {currentUser}=useSelector((state)=> state.user);
+const [searchTerm,setSearchTerm]=useState('');
   const [open, setOpen] = useState(false);
   const handleMenu = () => {
     setOpen((prev) => !prev);
   };
+
+  useEffect(()=>{
+    const urlParams=new URLSearchParams(window.location.search);
+    const searchTermFormUrl=urlParams.get('searchTerm');
+    if(searchTermFormUrl){
+      setSearchTerm(searchTermFormUrl);
+    }
+  },[location.search]);
+  
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('searchTerm',searchTerm);
+    const searchQuery=urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+
+  }
   return (
     <header className="shadow-md max-w-screen-2xl	">
       <nav className="flex p-3 justify-between items-center max-w-6xl mx-auto ">
@@ -19,13 +37,17 @@ const {currentUser}=useSelector((state)=> state.user);
           </h1>
         </div>
         <div>
-          <form className="p-2 pl-4 bg-gray-200 rounded-full flex items-center justify-between ">
+          <form onSubmit={handleSubmit} className="p-2 pl-4 bg-gray-200 rounded-full flex items-center justify-between ">
             <input
               className="mx-1 bg-transparent focus:outline-none w-max sm:w-80"
               type="text"
               placeholder="search"
+              value={searchTerm}
+              onChange={(e)=>setSearchTerm(e.target.value)}
             />
+            <button>
             <FaSearch className="text-slate-600 mr-2" />
+            </button>
           </form>
         </div>
 

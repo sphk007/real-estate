@@ -11,6 +11,8 @@ import CreateListing from "./pages/CreateListing";
 import React from "react";
 import PrivateRoute from "./components/PrivateRoute";
 import UpdateListing from "./pages/UpdateListing";
+import Listing from "./pages/Listing";
+import Search from "./pages/Search";
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/SignIn" element={<SignIn />} />
+        <Route path="/listing/:id" element={<Listing />} />
+        <Route path="/search" element={<Search />} />
         <Route element={<PrivateRoute />}>
           <Route path="/Profile" element={<Profile />} />
           <Route path="create-listing" element={<CreateListing />}></Route>
