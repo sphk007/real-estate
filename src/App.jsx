@@ -13,6 +13,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listing";
 import Search from "./pages/Search";
+import Wishlist from "./pages/Wishlist";
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/search" element={<Search />} />
         <Route element={<PrivateRoute />}>
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/Wishlist" element={<Wishlist />} />
           <Route path="create-listing" element={<CreateListing />}></Route>
           <Route path="update-listing/:id" element={<UpdateListing />}></Route>
         </Route>

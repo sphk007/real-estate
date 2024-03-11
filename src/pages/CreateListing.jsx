@@ -212,7 +212,7 @@ const CreateListing = () => {
             onChange={handleChange}
             value={formData.name}
           />
-          <select type="select" id="property_type" class="border p-3 border rounded-md w-full" onChange={handleChange} required>
+          <select type="select" id="property_type" class=" p-3 border rounded-md w-full" onChange={handleChange} required>
             <option value="PropertyType">Property-Type</option>
             <option value="house">House</option>
             <option value="apartment">Apartment</option>

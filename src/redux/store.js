@@ -2,11 +2,13 @@ import {configureStore} from '@reduxjs/toolkit';
 import  userReducer  from './user/userSlice';
 import { combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage' 
+import storage from 'redux-persist/lib/storage' ;
+import wishlistsReducer from './wishlists/wishSlice';
 // import rootReducer from './reducers'
 
 const rootReducer = combineReducers({
-    user:userReducer
+    user:userReducer,
+    wishlists:wishlistsReducer,
 });
 
 

@@ -7,7 +7,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
 import { FaShare, FaParking, FaChair, FaBed, FaBath, FaMapMarkerAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import Contact from "../components/Contact";
+// import Contact from "../components/Contact";
 import { Link } from "react-router-dom";
 import { FaHouse, FaP } from "react-icons/fa6";
 
@@ -20,7 +20,7 @@ const Listing = () => {
   const [listing, setListing] = useState(null);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [contact, setContact] = useState(false);
+  // const [contact, setContact] = useState(false);
   const [username,setUsername]=useState("");
   const [message,setMessage]=useState("");
   const [phone,setPhone]=useState("");
@@ -278,14 +278,14 @@ const Listing = () => {
                   </div>
                   {/*form */}
                   <form className='flex flex-col gap-y-4'>
-                    <input className='border border-gray-300 focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm' type='text' placeholder='Name*' defaultValue={currentUser.username} onChange={handleuser}></input>
-                    <input className='border border-gray-300 focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm' type='text' placeholder='email*' defaultValue={currentUser.email} ></input>
+                    <input className='border border-gray-300 focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm' type='text' placeholder='Name*'  onChange={handleuser}></input>
+                    {/* <input className='border border-gray-300 focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm' type='text' placeholder='email*' defaultValue={currentUser.email} ></input> */}
                     <input className='border border-gray-300 focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm' type='text' placeholder='Phone no*'onChange={handlephone}></input>
                     <textarea className='border border-green-300 focus:border-violet-700 outline-none resize-none rounded w-full p-4 h-36 text-sm text-gray-400' placeholder='Message*'onChange={handlemessage}></textarea>
                    
                     <div className='flex gap-x-2 '>
                     <Link
-                      to={`mailto:${listing.landlordemail}?subject= Hi I,am ${username} Regarding ${listing.name}Contact:${phone}&body=${message}`}
+                      to={`mailto:${listing.landlordemail}?subject= Hi I,am ${username} Regarding ${listing.name}.Contact:${phone}&body=${message}`}
                       className='bg-violet-700 text-center  hover:bg-violet-800 text-white rounded p-4 text-sm w-full transition'                    >
                       Send Message
                     </Link>

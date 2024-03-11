@@ -62,6 +62,9 @@ const [searchTerm,setSearchTerm]=useState('');
             <li className="hover:underline py-2">
               <Link to="">Services</Link>
             </li>
+            <li className="hover:underline py-2">
+              <Link to="/Wishlist">My Wishlist</Link>
+            </li>
             <li >
               <Link to='/Profile'>
                 {currentUser ? (
@@ -96,6 +99,9 @@ const [searchTerm,setSearchTerm]=useState('');
               <li>
                 <Link to="" className="hover:underline py-2">Services</Link>
               </li>
+              <li className="hover:underline py-2">
+              <Link to="/Wishlist">My Wishlist</Link>
+            </li>
               <li >
                 {currentUser ? (
                   <div className="flex gap-2"><img src={currentUser.avatar} alt="profile" className="rounded-full object-cover h-7 w-7" /><Link to="/Profile"><div>{currentUser.username}</div></Link></div>
