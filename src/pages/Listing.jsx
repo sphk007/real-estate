@@ -266,14 +266,15 @@ const Listing = () => {
                   </div>
 
                 </div>
-                <div className='flex-1 bg-white w-full mb-8 border border-gray-300 rounded-lg px-6 py-8 '>
+                <div className='flex-1 bg-white w-dvw sm:w-dvw mb-8 border border-gray-300 rounded-lg px-6 py-8 '>
+                  <h1 className="text-violet-800 text-xl text-center uppercase">Contact:</h1>
                   <div className='flex items-center gap-x-4 mb-8 '>
 
                     <img src={listing.avatar} alt='landlord' className="rounded-full h-20 w-20 object-cover cursor-pointer self-center mt-2" />
 
                     <div>
                       <div className='font-bold text-lg'>{listing.landlordname}</div>
-                      <Link to='' className='text-violet-700 text-sm'>view listings</Link>
+                      {/* <Link to='' className='text-violet-700 text-sm'>view listings</Link> */}
                     </div>
                   </div>
                   {/*form */}
