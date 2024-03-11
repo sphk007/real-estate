@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState,useEffect } from "react";
 import {
   getDownloadURL,
   getStorage,
@@ -8,6 +8,7 @@ import {
 import { app } from "../firebase.js";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 // import { Promise } from "mongoose";
 const CreateListing = () => {
   const [files, setFiles] = useState([]);
@@ -25,6 +26,8 @@ const CreateListing = () => {
     offer: false,
     parking: false,
     furnished: false,
+    lat: 0,
+    lng: 0,
   });
 
   const [imageUploadError, setImageUploadError] = useState(false);
@@ -33,8 +36,13 @@ const CreateListing = () => {
   const [loading, setLoading] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const [uploadsInProgress, setUploadsInProgress] = useState(false);
-
+  const [map, setMap] = useState(null);
+  const [currentLocation, setCurrentLocation] = useState(null);
+  // const [searchText, setSearchText] = useState('');
+  // const [searchResult, setSearchResult] = useState(null);
+  const [markerPosition, setMarkerPosition] = useState(null);
   const navigate = useNavigate();
+  console.log(markerPosition)
 
   console.log(formData);
 
@@ -44,6 +52,7 @@ const CreateListing = () => {
   //   }
   //   console.log("Image URLs updated:", formData.imageURL);
   // }, [formData.imageURL]);
+
 
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageURL.length < 7) {
@@ -83,6 +92,8 @@ const CreateListing = () => {
       const fileName = new Date().getTime() + file.name;
       const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, file);
+      
+
 
       uploadTask.on(
         "state_changed",
@@ -194,6 +205,63 @@ const CreateListing = () => {
     }
   };
 
+  const mapStyles = {
+    height: '400px',
+    width: '100%',
+  };
+
+  const defaultCenter = {
+    lat: 0,
+    lng: 0,
+  };
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setCurrentLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+      });
+    }
+  }, []);
+
+  const onLoad = (map) => {
+    setMap(map);
+  };
+  useEffect(() => {
+    if (markerPosition) {
+      setFormData({
+        ...formData,
+        lat: markerPosition.lat,
+        lng: markerPosition.lng,
+      });
+    }
+  }, [markerPosition]);
+
+  const onMapClick = (event) => {
+    // Update marker position when map is clicked
+    setMarkerPosition({
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    });
+  };
+
+  console.log(formData);
+  // const onPlacesChanged = () => {
+  //   const service = new window.google.maps.places.PlacesService(map);
+  //   service.textSearch(
+  //     {
+  //       query: searchText,
+  //     },
+  //     (results, status) => {
+  //       if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
+  //         setSearchResult(results[0]);
+  //         setCurrentLocation(results[0].geometry.location);
+  //       }
+  //     }
+  //   );
+  // };
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">
@@ -353,6 +421,7 @@ const CreateListing = () => {
               </div>
             )}
           </div>
+          
         </div>
 
         <div className="flex flex-col flex-1 gap-4">
@@ -412,6 +481,20 @@ const CreateListing = () => {
           {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>
       </form>
+      <div className="mt-5 ">
+      <LoadScript googleMapsApiKey="AIzaSyCi5JCccOtbpIpgIQ0l1ES5RLd8QcMx8eQ" >
+      <GoogleMap
+        mapContainerStyle={mapStyles}
+        zoom={10}
+        center={currentLocation || defaultCenter}
+        onClick={onMapClick}
+        onLoad={onLoad}
+      >
+        {currentLocation && <Marker position={currentLocation} />}
+        {markerPosition && <Marker position={markerPosition} />}
+      </GoogleMap>
+    </LoadScript>
+      </div>
     </main>
   );
 };

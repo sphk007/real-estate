@@ -1,14 +1,14 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import {
   getDownloadURL,
   getStorage,
-  list,
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
 import { app } from "../firebase.js";
 import { useSelector } from "react-redux";
-import { useNavigate,useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 // import { Promise } from "mongoose";
 const UpdateListing = () => {
   const [files, setFiles] = useState([]);
@@ -25,6 +25,8 @@ const UpdateListing = () => {
     offer: false,
     parking: false,
     furnished: false,
+    lat: 0,
+    lng: 0,
   });
 
   const [imageUploadError, setImageUploadError] = useState(false);
@@ -33,30 +35,37 @@ const UpdateListing = () => {
   const [loading, setLoading] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const [uploadsInProgress, setUploadsInProgress] = useState(false);
+  const [map, setMap] = useState(null);
+
+  // const [currentLocation, setCurrentLocation] = useState(null);
+  // const [searchText, setSearchText] = useState('');
+  // const [searchResult, setSearchResult] = useState(null);
+  const [marker, setMarker] = useState(null);
 
   const navigate = useNavigate();
-  const params=useParams();
+  const params = useParams();
+  const markerRef = useRef(null);
 
-console.log(formData);
+  console.log(formData);
 
   useEffect(() => {
-    const fetchListing=async()=>{
-        const listingId=params.id;
-        // console.log(listingId);
-        const res=await fetch(`/api/listing/get/${listingId}`);
-        const data=await res.json();
-        if(data.success===false){
-            console.log(data.message);
-            return;
-        }
-        setFormData(data);
-    }
+    const fetchListing = async () => {
+      const listingId = params.id;
+      // console.log(listingId);
+      const res = await fetch(`/api/listing/get/${listingId}`);
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+      setFormData(data);
+    };
     fetchListing();
   }, []);
 
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageURL.length < 7) {
-      setUploadsInProgress(true); 
+      setUploadsInProgress(true);
       setUploading(true);
       setImageUploadError(false);
       const promises = [];
@@ -66,7 +75,7 @@ console.log(formData);
       }
       Promise.all(promises)
         .then((urls) => {
-          console.log("Uploaded Urls:",urls);
+          console.log("Uploaded Urls:", urls);
           setFormData({
             ...formData,
             imageURL: formData.imageURL.concat(urls),
@@ -120,10 +129,10 @@ console.log(formData);
   };
 
   const handleChange = (e) => {
-    if(e.target.id==="property_type"){
+    if (e.target.id === "property_type") {
       setFormData({
         ...formData,
-        [e.target.id]:e.target.value,
+        [e.target.id]: e.target.value,
       });
     }
     if (e.target.id === "sale" || e.target.id === "rent") {
@@ -181,8 +190,8 @@ console.log(formData);
           ...formData,
           userRef: currentUser._id,
           avatar: currentUser.avatar,
-          landlordname:currentUser.username,
-          landlordemail:currentUser.email,
+          landlordname: currentUser.username,
+          landlordemail: currentUser.email,
         }),
       });
 
@@ -193,13 +202,76 @@ console.log(formData);
         setError(data.message);
         return;
       }
-
+      console.log(formData);
       navigate(`/Profile`);
     } catch (error) {
       setError(error.message);
       setLoading(false);
     }
   };
+  // const mapStyles = {
+  //   height: '400px',
+  //   width: '100%',
+  // };
+
+  // const defaultCenter = {
+  //   lat:0,
+  //   lng:0,
+  // };
+
+  // useEffect(() => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       setCurrentLocation({
+  //         lat: position.coords.latitude,
+  //         lng: position.coords.longitude,
+  //       });
+  //     });
+  //   }
+  // }, []);
+
+  // const onLoad = (map) => {
+  //   setMarker({lat:formData.lat,lng:formData.lng})
+  //   setMap(map);
+  // };
+  // useEffect(() => {
+  //   if (markerPosition) {
+  //     setFormData({
+  //       ...formData,
+  //       lat: markerPosition.lat,
+  //       lng: markerPosition.lng,
+  //     });
+  //   }
+  // }, [markerPosition]);
+
+  useEffect(() => {
+    // Set the initial marker position from formData
+    const { lat, lng } = formData;
+    if (lat !== 0 && lng !== 0) {
+      setMarker({ lat, lng });
+    }
+  }, [formData]);
+
+  // Handle onLoad event of Google Map
+  const onLoad = (map) => {
+    setMap(map);
+    if (formData.lat !== 0 && formData.lng !== 0) {
+      const marker = new window.google.maps.Marker({
+        position: { lat: formData.lat, lng: formData.lng },
+        map,
+      });
+      markerRef.current = marker;
+    }
+  };
+  const onMapClick = (event) => {
+    const { latLng } = event;
+    const lat = latLng.lat();
+    const lng = latLng.lng();
+    setMarker({ lat, lng });
+    setFormData({ ...formData, lat, lng }); // Update form data with marker position
+  };
+
+  console.log(formData);
 
   return (
     <main className="p-3 max-w-4xl mx-auto">
@@ -219,13 +291,18 @@ console.log(formData);
             onChange={handleChange}
             value={formData.name}
           />
-           <select type="text" id="property_type" class="border p-3 border rounded-md w-full" onChange={handleChange} required>
+          <select
+            type="text"
+            id="property_type"
+            className="p-3 border rounded-md w-full"
+            onChange={handleChange}
+            required
+          >
             <option value="PropertyType">Property-Type</option>
             <option value="house">House</option>
             <option value="apartment">Apartment</option>
             <option value="condo">Condo</option>
-
-          </select>  
+          </select>
           <textarea
             type="text"
             placeholder="Description"
@@ -420,6 +497,24 @@ console.log(formData);
           {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>
       </form>
+      <div className="mt-5">
+        <LoadScript
+          googleMapsApiKey="AIzaSyCi5JCccOtbpIpgIQ0l1ES5RLd8QcMx8eQ"
+          loadingElement={<div>Loading...</div>}
+          libraries={["places"]}
+        >
+          <GoogleMap
+            mapContainerStyle={{ height: "400px", width: "100%" }}
+            zoom={10}
+            center={{ lat: formData.lat, lng: formData.lng }}
+            onLoad={onLoad}
+            onClick={onMapClick}
+            
+          >
+            {marker && <Marker position={marker} />}{" "}
+          </GoogleMap>
+        </LoadScript>
+      </div>
     </main>
   );
 };
