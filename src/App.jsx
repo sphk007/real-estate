@@ -14,6 +14,8 @@ import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listing";
 import Search from "./pages/Search";
 import Wishlist from "./pages/Wishlist";
+import Service from "./pages/Service";
+import About from "./pages/About";
 // import Footer from "./components/Footer";
 
 export default function App() {
@@ -22,6 +24,8 @@ export default function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Service" element={<Service />} />
+        <Route path="/About" element={<About />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/listing/:id" element={<Listing />} />

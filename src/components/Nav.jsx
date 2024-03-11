@@ -59,10 +59,10 @@ const Nav = () => {
               <Link to="/">Home</Link>
             </li>
             <li className="hover:underline py-2">
-              <Link to="">About</Link>
+              <Link to="/About">About</Link>
             </li>
             <li className="hover:underline py-2">
-              <Link to="">Services</Link>
+              <Link to="/Service">Services</Link>
             </li>
 
             <li>
@@ -124,12 +124,12 @@ const Nav = () => {
                 </Link>
               </li>
               <li>
-                <Link to="" className="hover:underline py-2">
+                <Link to="/About" className="hover:underline py-2">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="" className="hover:underline py-2">
+                <Link to="/Service" className="hover:underline py-2">
                   Services
                 </Link>
               </li>
