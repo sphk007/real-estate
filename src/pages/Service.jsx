@@ -1,10 +1,10 @@
 import React from "react";
-
+import image1 from '../assets/img/houses/house8lg.png'
 const Services = () => {
     return (
-        <div className="bg-violet-500 min-h-screen">
-            <div className="container mx-auto py-8">
-                <div className="bg-cover bg-center h-96 flex items-center text-white">
+        <div className=" min-h-screen p-4">
+            <div className="container mx-auto py-8 gap-4">
+                <div className="bg-cover  h-96 flex items-center text-black-500 flex-col sm:flex-row gap-4">
                     <div className="text-center">
                         <h1 className="text-4xl font-semibold mb-4">Discover Your Dream Home</h1>
                         <p className="text-lg mb-8">Explore our range of real estate services tailored to meet your needs.</p>
@@ -12,13 +12,14 @@ const Services = () => {
                             Explore Properties
                         </a>
                     </div>
-                    
-                        <img className='max-w-full h-auto'src='' alt='house photo' />
-                
+                    <div class="mx-auto">
+                        <img class="rounded-lg sm:mt-24" src={image1} alt="house photo" />
+                    </div>
+
                 </div>
 
                 {/* Services section */}
-                <section id="services" className="mt-12">
+                <section id="services" className="mt-24">
                     <h2 className="text-3xl font-semibold mb-4">Our Services</h2>
                     <p className="text-gray-600 mb-8">
                         At XYZ Realty, we offer a comprehensive suite of real estate services. Whether you're buying, selling, or investing, we've got you covered.

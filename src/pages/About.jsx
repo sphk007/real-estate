@@ -1,10 +1,21 @@
 import React from "react";
+import image1 from '../assets/img/agents/agent1.png';
+import image2 from '../assets/img/agents/agent10.png';
+import image3 from '../assets/img/agents/agent11.png';
+import image4 from '../assets/img/agents/agent12.png';
+import image5 from '../assets/img/agents/client1.jpeg';
+import image6 from '../assets/img/agents/client2.jpeg';
+import image7 from '../assets/img/agents/client3.jpeg';
+
+
+
+
  const About=()=>
  {
     return(
-        <body class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
+        <body class="bg-violet-100 text-gray-900 tracking-wider leading-normal">
 
-<div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+<div class="bg-violet-500 py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
     <div class="relative max-w-xl mx-auto">
         <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
             <defs>
@@ -18,7 +29,7 @@ import React from "react";
             <h2 class="text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                 About Real Estate Co.
             </h2>
-            <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+            <p class="mt-4 max-w-2xl text-xl text-white-500 lg:mx-auto">
                 Discover our journey and the values that drive us to deliver exceptional real estate experiences.
             </p>
         </div>
@@ -82,9 +93,26 @@ import React from "react";
         <h2 class="text-3xl font-extrabold text-white">Meet Our Team</h2>
         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="text-center">
-                <img class="w-32 h-32 mx-auto rounded-full" src="/images/team-member-1.jpg" alt="Team member"/>
+            <img class="w-32 h-32 mx-auto rounded-full" src={image1} alt="Team member"/>
                 <h3 class="mt-4 text-lg leading-6 font-medium text-white">Jane Cooper</h3>
                 <p class="mt-2 text-base text-indigo-200">CEO & Founder</p>
+            </div>
+            <div class="text-center">
+            <img class="w-32 h-32 mx-auto rounded-full" src={image2} alt="Team member"/>
+                <h3 class="mt-4 text-lg leading-6 font-medium text-white">Elena Grant</h3>
+                <p class="mt-2 text-base text-indigo-200">Foreclosure Specialist</p>
+            </div>
+            <div class="text-center">
+            <img class="w-32 h-32 mx-auto rounded-full" src={image3} alt="Team member"/>
+                <h3 class="mt-4 text-lg leading-6 font-medium text-white">Lucas Bennett
+ </h3>
+                <p class="mt-2 text-base text-indigo-200">Leasing Consultant</p>
+            </div>
+            <div class="text-center">
+            <img class="w-32 h-32 mx-auto rounded-full" src={image4} alt="Team member"/>
+                <h3 class="mt-4 text-lg leading-6 font-medium text-white"> Oliver Carter
+</h3>
+                <p class="mt-2 text-base text-indigo-200">Property Manager</p>
             </div>
         </div>
     </div>
@@ -96,7 +124,7 @@ import React from "react";
         <div class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6">
             <div class="group relative">
                 <div class="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                    <img src="agent1.png" alt="Client photo" class="w-full h-full object-center object-cover"/>
+                    <img src={image6} alt="Client photo" class="w-full h-full object-center object-cover"/>
                 </div>
                 <h3 class="mt-6 text-sm text-gray-500">
                     <a href="#">
@@ -105,6 +133,30 @@ import React from "react";
                     </a>
                 </h3>
                 <p class="text-base font-semibold text-gray-900">"Real Estate Co. helped me find my dream home. Their dedication and expertise made the process a breeze!"</p>
+            </div>
+            <div class="group relative">
+                <div class="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+                    <img src={image7} alt="Client photo" class="w-full h-full object-center object-cover"/>
+                </div>
+                <h3 class="mt-6 text-sm text-gray-500">
+                    <a href="#">
+                        <span class="absolute inset-0"></span>
+                        Emily Selman
+                    </a>
+                </h3>
+                <p class="text-base font-semibold text-gray-900">"I had an exceptional experience with Real Estate Co. Their team was professional, responsive, and guided me through the entire process seamlessly. Highly recommended!"</p>
+            </div>
+            <div class="group relative">
+                <div class="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+                    <img src={image5} alt="Client photo" class="w-full h-full object-center object-cover"/>
+                </div>
+                <h3 class="mt-6 text-sm text-gray-500">
+                    <a href="#">
+                        <span class="absolute inset-0"></span>
+                        Emily Selman
+                    </a>
+                </h3>
+                <p class="text-base font-semibold text-gray-900">"Real Estate Co. exceeded my expectations. Their personalized service, attention to detail, and commitment to finding the perfect home were outstanding. I’m thrilled with my new property!"</p>
             </div>
         </div>
     </div>
