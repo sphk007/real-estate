@@ -16,12 +16,17 @@ import Search from "./pages/Search";
 import Wishlist from "./pages/Wishlist";
 import Service from "./pages/Service";
 import About from "./pages/About";
+import Pano from "./components/Pano";
+// import { Panorama } from "panolens";
+// import Panorama from "./pages/Panorama";
 // import Footer from "./components/Footer";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Nav />
+      
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Service" element={<Service />} />
@@ -30,6 +35,7 @@ export default function App() {
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/listing/:id" element={<Listing />} />
         <Route path="/search" element={<Search />} />
+        {/* <Route  path="/Pano" element={<Panorama />} /> */}
         <Route element={<PrivateRoute />}>
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Wishlist" element={<Wishlist />} />
@@ -38,6 +44,7 @@ export default function App() {
         </Route>
       </Routes>
       {/* <Footer /> */}
+      {/* <Pano /> */}
     </BrowserRouter>
   );
 }

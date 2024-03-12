@@ -4,7 +4,7 @@ import { BiLogoFacebook, BiLogoInstagram, BiLogoLinkedin, BiLogoTwitter, BiLogoY
 const Footer = () => {
   return( 
     
-    <footer class="bg-gray-700 text-white p-8">
+    <footer class="bg-gray-900 text-white p-8">
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
             <h5 class="text-xl font-bold mb-3">Real Estate Co.</h5>

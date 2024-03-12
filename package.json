@@ -16,6 +16,8 @@
     "firebase": "^10.8.0",
     "flowbite-react": "^0.7.2",
     "js-cookies": "^1.0.4",
+    "pannellum-react": "^1.2.4",
+    "panolens": "^0.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
