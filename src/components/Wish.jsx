@@ -38,7 +38,7 @@ export default function Wish({ Wishlist }) {
     setIsInWishlist(!isInWishlist);
   };
   return (
-    <div className="relative bg-white shadow-[0_3px_10px_rgb(0,0,0,0.5)] hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]">
+    <div className="relative bg-white shadow-[0_3px_10px_rgb(0,0,0,0.3)] hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]">
       <button
         className={`absolute top-[16px] right-[18px] bg-white rounded-full p-2 z-10 text-md`}
         onClick={toggleWishlist}

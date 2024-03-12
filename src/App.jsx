@@ -44,7 +44,7 @@ export default function App() {
         </Route>
       </Routes>
       {/* <Footer /> */}
-      {/* <Pano /> */}
+      <Pano />
     </BrowserRouter>
   );
 }

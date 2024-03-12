@@ -20,7 +20,7 @@ import image7 from '../assets/img/agents/client3.jpeg';
         <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
             <defs>
                 <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                    <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" className="text-white"/>
                 </pattern>
             </defs>
             <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
@@ -88,7 +88,7 @@ import image7 from '../assets/img/agents/client3.jpeg';
     </div>
 </div>
 
-<div class="bg-gray-800">
+<div class="bg-gray-600">
     <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-extrabold text-white">Meet Our Team</h2>
         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -122,7 +122,7 @@ import image7 from '../assets/img/agents/client3.jpeg';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-extrabold text-gray-900">What Our Clients Say</h2>
         <div class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6">
-            <div class="group relative">
+            <div class="group relative shadow-[0_3px_10px_rgb(0,0,0,0.3)] p-2 rounded-md">
                 <div class="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
                     <img src={image6} alt="Client photo" class="w-full h-full object-center object-cover"/>
                 </div>
@@ -134,7 +134,7 @@ import image7 from '../assets/img/agents/client3.jpeg';
                 </h3>
                 <p class="text-base font-semibold text-gray-900">"Real Estate Co. helped me find my dream home. Their dedication and expertise made the process a breeze!"</p>
             </div>
-            <div class="group relative">
+            <div class="group relative shadow-[0_3px_10px_rgb(0,0,0,0.3)] p-2 rounded-md ">
                 <div class="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
                     <img src={image7} alt="Client photo" class="w-full h-full object-center object-cover"/>
                 </div>
@@ -146,7 +146,7 @@ import image7 from '../assets/img/agents/client3.jpeg';
                 </h3>
                 <p class="text-base font-semibold text-gray-900">"I had an exceptional experience with Real Estate Co. Their team was professional, responsive, and guided me through the entire process seamlessly. Highly recommended!"</p>
             </div>
-            <div class="group relative">
+            <div class="group relative shadow-[0_3px_10px_rgb(0,0,0,0.3)] p-2 rounded-md">
                 <div class="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
                     <img src={image5} alt="Client photo" class="w-full h-full object-center object-cover"/>
                 </div>

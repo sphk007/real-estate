@@ -1,4 +1,5 @@
 import React from 'react';
+import { MdRealEstateAgent } from "react-icons/md";
 
 import { BiLogoFacebook, BiLogoInstagram, BiLogoLinkedin, BiLogoTwitter, BiLogoYoutube } from 'react-icons/bi';
 const Footer = () => {
@@ -7,7 +8,7 @@ const Footer = () => {
     <footer class="bg-gray-900 text-white p-8">
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
-            <h5 class="text-xl font-bold mb-3">Real Estate Co.</h5>
+            <h5 className='flex gap-2'><MdRealEstateAgent className='text-3xl ' /><span className="text-xl font-bold mb-3">HOMESPHERE</span></h5>
             <p class="text-gray-400">Providing top-notch real estate solutions since 1995. We help you find the perfect property or buyer with ease.</p>
             <p class="text-gray-400 mt-4">© 2024 Real Estate Co.</p>
         </div>
@@ -23,8 +24,8 @@ const Footer = () => {
         </div>
         <div>
             <h5 class="text-xl font-bold mb-3">Get in Touch</h5>
-            <p class="hover:text-gray-300"><i class="fas fa-envelope mr-2"></i>contact@realestateco.com</p>
-            <p class="hover:text-gray-300"><i class="fas fa-phone mr-2"></i>+1 555-REALESTATE</p>
+            <p class="hover:text-gray-300"><i class="fas fa-envelope mr-2"></i>contact@homesphere.com</p>
+            <p class="hover:text-gray-300"><i class="fas fa-phone mr-2"></i>+1 555-HOMESPHERE</p>
             <p class="hover:text-gray-300"><i class="fas fa-map-marker-alt mr-2"></i>123 Real Estate St., Property City</p>
         </div>
         <div>

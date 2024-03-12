@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Pannellum } from "pannellum-react";
 
-import fantasyNight from '../assets/img/pano3.jpg'
+import fantasyNight from '../assets/img/image1.jpeg'
 // import fantasyCave from '../assets/img/fantasy_cave.jfif'
 const Pano = () => {
   const [currentScene, setCurrentScene] = useState(fantasyNight);

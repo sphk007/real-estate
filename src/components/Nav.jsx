@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { MdRealEstateAgent } from "react-icons/md";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -31,8 +32,9 @@ const Nav = () => {
     <header className="shadow-md max-w-screen-2xl	">
       <nav className="flex p-3 justify-between items-center max-w-6xl mx-auto ">
         <div>
-          <h1>
-            <span className="font-medium text-slate-600">LOGO</span>
+          <h1 className="flex gap-2 items-center">
+          <MdRealEstateAgent className="text-violet-800 text-3xl" />
+            <span className="text-lg font-semibold text-violet-800 ">HOMESPHERE</span>
           </h1>
         </div>
         <div>
@@ -101,7 +103,7 @@ const Nav = () => {
         </div>
       </nav>
       <div className="flex justify-end">
-        <div className="mr-2 flex sm:hidden  absolute right-4 top-4 ">
+        <div className="mr-2 flex sm:hidden  absolute right-2 top-4 ">
           <button
             type="button"
             onClick={handleMenu}
