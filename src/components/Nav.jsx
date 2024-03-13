@@ -155,7 +155,7 @@ const Nav = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="bg-violet-900 hover:bg-violet-700 text-white p-2 rounded-lg transition">
+                  <div className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition">
                     <Link to="/Signup" className="hover:underline">
                       Signup
                     </Link>
