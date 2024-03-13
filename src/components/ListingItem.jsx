@@ -16,7 +16,7 @@ import { addToWishList } from "../redux/wishlists/wishSlice";
 import { list } from "firebase/storage";
 import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
-import Pano from "./Pano";
+// import Pano from "./Pano";
 
 export default function ListingItem({ listing }) {
   const [isInWishlist, setIsInWishlist] = useState(false);

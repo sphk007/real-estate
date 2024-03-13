@@ -1,6 +1,6 @@
 import React from "react";
 import image1 from '../assets/img/houses/house8lg.png'
-import Pano from "../components/Pano";
+// import Pano from "../components/Pano";
 const Services = () => {
     return (
         <div className=" min-h-screen p-4">
