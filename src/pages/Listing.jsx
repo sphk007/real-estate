@@ -18,8 +18,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaHouse, FaP } from "react-icons/fa6";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import Pano from "../components/Pano";
-import { Tb360View } from "react-icons/tb";
 const Listing = () => {
   SwiperCore.use([Navigation]);
   const params = useParams();
@@ -114,14 +112,14 @@ const Listing = () => {
                             backgroundSize: "cover",
                           }}
                         >
-                          <Link to={`/panorama/${params.id}`}>
-                            <button className="absolute p-2 bg-white bottom-[1rem] right-[1.5rem] rounded-full">
+                          {/* <Link to={`/panorama/${params.id}`}>
+                             <button className="absolute p-2 bg-white bottom-[1rem] right-[1.5rem] rounded-full">
                               <Tb360View
                                 // panoramaUrl={listing.panorama}
                                 className="text-gray-400 text-2xl"
                               />
-                            </button>
-                          </Link>
+                            </button> 
+                          </Link> */}
                         </div>
                       </SwiperSlide>
                     ))}
@@ -283,7 +281,7 @@ const Listing = () => {
                     zoom={10}
                     center={{ lat: listing.lat, lng: listing.lng }}
                     onLoad={onLoad}
-                    // onClick={onMapClick}
+                  // onClick={onMapClick}
                   >
                     {marker && <Marker position={marker} />}{" "}
                   </GoogleMap>
