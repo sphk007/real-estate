@@ -235,19 +235,19 @@ const Profile = () => {
           <button
             disabled={loading}
             onClick={handleSubmit}
-            className="w-full mt-5 bg-violet-900 self-end text-white p-[1rem] rounded-lg uppercase text-center hover:opacity-50"
+            className="w-full mt-5 bg-blue-600 self-end text-white p-[1rem] rounded-lg uppercase text-center hover:opacity-50"
             type="submit"
           >
             {loading ? "loading..." : "Update"}
           </button>
-        <button className="w-full mt-3 text-violet-900 p-3 rounded-lg uppercase text-center hover:opacity-95 border-solid border-2 border-violet-900">
+        <button className="w-full mt-3 text-blue-600 p-3 rounded-lg uppercase text-center hover:opacity-95 border-solid border-2 border-blue-500">
           <Link
             to={"/create-listing"}
           >
             create Property
           </Link>
         </button>
-        <button onClick={handleShowListings} className="w-full mt-3 text-violet-900 p-3 rounded-lg uppercase text-center hover:opacity-95 border-solid border-2 border-violet-900">
+        <button onClick={handleShowListings} className="w-full mt-3 text-blue-600 p-3 rounded-lg uppercase text-center hover:opacity-95 border-solid border-2 border-blue-500">
           My Property
         </button>
 
@@ -258,12 +258,12 @@ const Profile = () => {
         <div className="flex justify-between mt-5">
           <span
             onClick={handleDeleteUser}
-            className="flex gap-1 items-center text-red-700 cursor-pointer"
+            className="flex gap-1 items-center text-white bg-red-700 p-2 rounded-lg  cursor-pointer"
           >
             <MdOutlineDeleteSweep />
             Delete Account
           </span>
-          <span onClick={handlesignout} className="flex gap-1 items-center text-red-700 cursor-pointer ">
+          <span onClick={handlesignout} className="flex gap-1 items-center text-white bg-red-700 p-2 rounded-lg cursor-pointer ">
             sign out <GoSignOut />
           </span>
         </div>
@@ -279,7 +279,7 @@ const Profile = () => {
             {userListings.map((listing) => (
               <div
                 key={listing._id}
-                className="border rounded-lg p-3 flex justify-between items-center gap-4"
+                className="border rounded-lg p-3 flex justify-between items-center gap-4 shadow-[0_3px_10px_rgb(0,0,0,0.1)]"
               >
                 <Link to={`/listing/${listing._id}`}>
                   <img
@@ -295,15 +295,16 @@ const Profile = () => {
                   <p>{listing.name}</p>
                 </Link>
 
-                <div className="flex flex-col item-center">
+                <div className="flex flex-col item-center mr-8 gap-3">
                   <button
                     onClick={() => handleListingDelete(listing._id)}
-                    className="text-red-700 uppercase"
+                    className="text-white uppercase p-1 rounded-lg bg-red-700"
+
                   >
                     Delete
                   </button>
                   <Link to={`/update-listing/${listing._id}`}>
-                    <button className="text-green-700 uppercase">Edit</button>
+                    <button className="text-white uppercase bg-green-700 py-1 px-3 rounded-lg">Edit</button>
                   </Link>
                 </div>
               </div>

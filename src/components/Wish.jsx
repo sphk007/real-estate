@@ -60,15 +60,15 @@ export default function Wish({ Wishlist }) {
             {Wishlist.name}
           </p>
           <div className="flex gap-x-2 text-sm mt-3">
-            <div className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+            <div className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg">
               <FaHouse />
               {Wishlist.property_type}
             </div>
-            <p className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+            <p className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg">
               {Wishlist.type === "rent" ? "For Rent" : "For Sale"}
             </p>
             {Wishlist.offer && (
-              <p className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+              <p className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg">
                 ${+Wishlist.regularPrice - +Wishlist.discountPrice} OFF
               </p>
             )}
@@ -102,7 +102,7 @@ export default function Wish({ Wishlist }) {
                 : `${Wishlist.bathrooms} bath `}
             </div>
           </div> */}
-          <div className="flex gap-2 text-violet-700 mt-1">
+          <div className="flex gap-2 text-blue-600 mt-1">
             <div className="  flex gap-1 items-center">
               <FaBed className="text-xs" />
               <div className="text-xs">

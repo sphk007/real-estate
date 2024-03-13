@@ -31,26 +31,26 @@ const Nav = () => {
   return (
     <header className="shadow-md max-w-screen-2xl	">
       <nav className="flex p-3 justify-between items-center max-w-6xl mx-auto ">
-        <div>
+        <div >
           <h1 className="flex gap-2 items-center">
-          <MdRealEstateAgent className="text-violet-800 text-3xl" />
-            <span className="text-lg font-semibold text-violet-800 ">HOMESPHERE</span>
+          <MdRealEstateAgent className="text-blue-600 text-lg sm:text-3xl" />
+            <span className="text-sm sm:text-lg font-semibold text-blue-600 ">HOMESPHERE</span>
           </h1>
         </div>
         <div>
           <form
             onSubmit={handleSubmit}
-            className="p-2 pl-4 bg-violet-200 rounded-full flex items-center justify-between "
+            className="p-2 pl-4 bg-gray-200 rounded-full flex items-center justify-between "
           >
             <input
-              className="mx-1 bg-transparent focus:outline-none w-max sm:w-80"
+              className=" bg-transparent focus:outline-none w-[7rem] sm:w-80"
               type="text"
               placeholder="search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button>
-              <FaSearch className="text-violet-600 mr-2" />
+              <FaSearch className="text-blue-600 mr-2" />
             </button>
           </form>
         </div>
@@ -87,7 +87,7 @@ const Nav = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="bg-violet-900 hover:bg-violet-700 text-white p-2 rounded-lg transition">
+                  <div className="bg-blue-600 hover:bg-blue-600 text-white p-2 rounded-lg transition">
                     <Link to="/Signup" className="hover:underline">
                       Signup
                     </Link>
@@ -103,7 +103,7 @@ const Nav = () => {
         </div>
       </nav>
       <div className="flex justify-end">
-        <div className="mr-2 flex sm:hidden  absolute right-2 top-4 ">
+        <div className="mr-2 flex sm:hidden  absolute  top-4 ">
           <button
             type="button"
             onClick={handleMenu}
@@ -111,9 +111,9 @@ const Nav = () => {
           >
             <span className="sr-only">Menu</span>
             {open == true ? (
-              <FaTimes className="text-violet-600" />
+              <FaTimes className="text-blue-600" />
             ) : (
-              <FaBars className="text-violet-600" />
+              <FaBars className="text-blue-600" />
             )}
           </button>
         </div>
@@ -138,7 +138,7 @@ const Nav = () => {
 
               <li>
                 {currentUser ? (
-                   <div className="flex flex-col gap-4 py-2 align-baseline">
+                   <div className="flex flex-col gap-4  align-baseline">
                    <div>
                    <li className="hover:underline  self-baseline">
                       <Link to="/Wishlist">My Wishlist</Link>

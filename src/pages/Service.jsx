@@ -1,5 +1,6 @@
 import React from "react";
 import image1 from '../assets/img/houses/house8lg.png'
+import Pano from "../components/Pano";
 const Services = () => {
     return (
         <div className=" min-h-screen p-4">
@@ -8,12 +9,13 @@ const Services = () => {
                     <div className="text-center">
                         <h1 className="text-4xl font-semibold mb-4">Discover Your Dream Home</h1>
                         <p className="text-lg mb-8">Explore our range of real estate services tailored to meet your needs.</p>
-                        <a href="#services" className="bg-violet-800 hover:bg-blue-600 text-white py-2 px-6 rounded-full">
+                        <a href="#services" className="bg-blue-600 hover:bg-blue-600 text-white py-2 px-6 rounded-full">
                             Explore Properties
                         </a>
                     </div>
                     <div class="mx-auto">
-                        <img class="rounded-lg sm:mt-24" src={image1} alt="house photo" />
+                        <img class="rounded-lg sm:mt-24 " src={image1} alt="house photo" />
+                        {/* <Pano /> */}
                     </div>
 
                 </div>
@@ -63,7 +65,7 @@ const Services = () => {
                     </p>
                     <div className="flex items-center space-x-4">
                         <span className="text-gray-600">Call us:</span>
-                        <a href="tel:+1234567890" className="text-violet-800 hover:underline">
+                        <a href="tel:+1234567890" className="text-blue-600 hover:underline">
                             +1 (234) 567-890
                         </a>
                     </div>

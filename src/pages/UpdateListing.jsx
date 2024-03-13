@@ -460,7 +460,7 @@ const UpdateListing = () => {
               disabled={uploading}
               onClick={handleImageSubmit}
               type="button"
-              className="p-3 text-violet-900 border-2 border-violet-900 rounded uppercase hover:shadow-lg disabled:opacity-80"
+              className="p-3 text-blue-600 border-2 border-blue-600 rounded uppercase hover:shadow-lg disabled:opacity-80"
             >
               {uploading ? "Uploading..." : "Upload"}
             </button>
@@ -482,7 +482,7 @@ const UpdateListing = () => {
                 <button
                   type="button"
                   onClick={() => handleRemoveImage(index)}
-                  className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75"
+                  className=" text-white bg-red-700 p-2 rounded-lg  uppercase hover:opacity-75"
                 >
                   Delete
                 </button>
@@ -490,7 +490,7 @@ const UpdateListing = () => {
             ))}
           <button
             disabled={loading || uploading}
-            className="p-3 bg-violet-900 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            className="p-3 bg-blue-600 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
           >
             {loading ? "Updating..." : "Update Property"}
           </button>
@@ -498,6 +498,7 @@ const UpdateListing = () => {
         </div>
       </form>
       <div className="mt-5">
+      <p className="text-gray-900 text-lg py-4">Locate the Property:</p>
         <LoadScript
           googleMapsApiKey="AIzaSyCi5JCccOtbpIpgIQ0l1ES5RLd8QcMx8eQ"
           loadingElement={<div>Loading...</div>}

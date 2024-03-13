@@ -16,6 +16,7 @@ import { addToWishList } from "../redux/wishlists/wishSlice";
 import { list } from "firebase/storage";
 import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
+import Pano from "./Pano";
 
 export default function ListingItem({ listing }) {
   const [isInWishlist, setIsInWishlist] = useState(false);
@@ -60,15 +61,15 @@ export default function ListingItem({ listing }) {
             {listing.name}
           </p>
           <div className="flex gap-x-2 text-sm mt-3">
-            <div className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+            <div className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg">
               <FaHouse />
               {listing.property_type}
             </div>
-            <p className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+            <p className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg">
               {listing.type === "rent" ? "For Rent" : "For Sale"}
             </p>
             {listing.offer && (
-              <p className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+              <p className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg">
                 ${+listing.regularPrice - +listing.discountPrice} OFF
               </p>
             )}
@@ -102,7 +103,7 @@ export default function ListingItem({ listing }) {
                 : `${listing.bathrooms} bath `}
             </div>
           </div> */}
-          <div className="flex gap-2 text-violet-700 mt-1">
+          <div className="flex gap-2 text-blue-600 mt-1">
             <div className="  flex gap-1 items-center">
               <FaBed className="text-xs" />
               <div className="text-xs">

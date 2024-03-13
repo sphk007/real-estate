@@ -1,5 +1,5 @@
 // import { set } from "mongoose";
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
@@ -18,7 +18,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaHouse, FaP } from "react-icons/fa6";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-
+import Pano from "../components/Pano";
+import { Tb360View } from "react-icons/tb";
 const Listing = () => {
   SwiperCore.use([Navigation]);
   const params = useParams();
@@ -89,11 +90,11 @@ const Listing = () => {
   };
   return (
     <>
-      <main>
-        <section className="mt-5">
+      <main className="">
+        <section >
           {loading && (
             <p className="flex justify-center my-[10rem]">
-              <div className="w-10 h-10 border-4 border-slate-500 rounded-full animate-spin border-t-transparent"></div>
+              <div className="w-10 h-10 border-4 border-blue-600 rounded-full animate-spin border-t-transparent"></div>
             </p>
           )}
           {listing && !loading && !error && (
@@ -102,21 +103,35 @@ const Listing = () => {
               <div className='text-3xl font-semibold text-violet-600'></div>
             </div> */}
               <div className="flex flex-col items-start gap-8 lg:flex-row">
-                <div className="max-w-[768px]">
+                <div className="w-screen sm:max-w-[768px]">
                   <Swiper navigation>
                     {listing.imageURL.map((url) => (
                       <SwiperSlide key={url}>
                         <div
-                          className="h-[550px]"
+                          className="h-[550px] relative"
                           style={{
                             background: `url(${url}) center no-repeat`,
                             backgroundSize: "cover",
                           }}
-                        ></div>
+                        >
+                          <Link to={`/panorama/${params.id}`}>
+                            <button className="absolute p-2 bg-white bottom-[1rem] right-[1.5rem] rounded-full">
+                              <Tb360View
+                                // panoramaUrl={listing.panorama}
+                                className="text-gray-400 text-2xl"
+                              />
+                            </button>
+                          </Link>
+                        </div>
                       </SwiperSlide>
                     ))}
+                    {/* <SwiperSlide>
+    Render your <Pano /> component here
+    <Pano />
+  </SwiperSlide> */}
+                    {/* <Pano /> */}
                   </Swiper>
-                  <div>
+                  <div className="p-2">
                     <h2 className="text-2xl font-semibold mt-5">
                       {listing.name}- ${""}
                       {listing.offer
@@ -129,22 +144,22 @@ const Listing = () => {
                       <h3 className="text-lg">{listing.address}</h3>
                     </div>
                   </div>
-                  <div className="flex gap-x-2 text-md mt-3">
-                    <div className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+                  <div className="flex gap-x-2 text-md mt-3 px-2">
+                    <div className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg">
                       <FaHouse />
                       {listing.property_type}
                     </div>
-                    <p className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+                    <p className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg">
                       {listing.type === "rent" ? "For Rent" : "For Sale"}
                     </p>
                     {listing.offer && (
-                      <p className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+                      <p className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg">
                         ${+listing.regularPrice - +listing.discountPrice} OFF
                       </p>
                     )}
-                    <div className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg">
+                    <div className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg">
                       <p
-                        className="flex gap-2 items-center bg-violet-900 text-white py-2 px-3 rounded-lg"
+                        className="flex gap-2 items-center bg-blue-600 text-white py-2 px-3 rounded-lg"
                         onClick={() => {
                           navigator.clipboard.writeText(window.location.href);
                           setCopied(true);
@@ -164,13 +179,13 @@ const Listing = () => {
                     )}
                     {/* <div className='bg-violet-500 text-white px-3 rounded-full'>house country</div> */}
                   </div>
-                  <p className="text-slate-800 mt-3">
+                  <p className="text-slate-800 mt-3 px-2">
                     <span className="font-semibold text-black">
                       Description -{" "}
                     </span>
                     {listing.description}
                   </p>
-                  <div className="flex gap-x-6 text-violet-700 mt-3">
+                  <div className="flex gap-x-6 text-blue-600 mt-3 px-2">
                     <div className="  flex gap-x-2 items-center">
                       <FaBed className="text-2xl" />
                       <div>
@@ -202,9 +217,9 @@ const Listing = () => {
                     </div>
                   </div>
                 </div>
-                
-                <div className="flex-1 bg-white w-dvw sm:w-dvw mb-8 border border-gray-300 rounded-lg px-6 py-8 ">
-                  <h1 className="text-violet-800 text-xl text-center uppercase">
+
+                <div className=" flex-1 bg-white w-dvw sm:w-dvw mb-8 border border-gray-300 rounded-lg px-6 py-8 ">
+                  <h1 className="text-blue-800 text-xl text-center uppercase">
                     Contact:
                   </h1>
                   <div className="flex items-center gap-x-4 mb-8 ">
@@ -214,7 +229,6 @@ const Listing = () => {
                       className="rounded-full h-20 w-20 object-cover cursor-pointer self-center mt-2"
                     />
 
-
                     <div>
                       <div className="font-bold text-lg">
                         {listing.landlordname}
@@ -222,33 +236,32 @@ const Listing = () => {
                       {/* <Link to='' className='text-violet-700 text-sm'>view listings</Link> */}
                     </div>
                   </div>
-                  
+
                   {/*form */}
                   <form className="flex flex-col gap-y-4">
                     <input
-                      className="border border-gray-300 focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm"
+                      className="border border-gray-300 focus:border-blue-600 outline-none rounded w-full px-4 h-14 text-sm"
                       type="text"
                       placeholder="Name*"
                       onChange={handleuser}
                     ></input>
                     {/* <input className='border border-gray-300 focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm' type='text' placeholder='email*' defaultValue={currentUser.email} ></input> */}
                     <input
-                      className="border border-gray-300 focus:border-violet-700 outline-none rounded w-full px-4 h-14 text-sm"
+                      className="border border-gray-300 focus:border-blue-600 outline-none rounded w-full px-4 h-14 text-sm"
                       type="text"
                       placeholder="Phone no*"
                       onChange={handlephone}
                     ></input>
                     <textarea
-                      className="border border-green-300 focus:border-violet-700 outline-none resize-none rounded w-full p-4 h-36 text-sm text-gray-400"
+                      className="border border-green-300 focus:border-blue-600 outline-none resize-none rounded w-full p-4 h-36 text-sm text-gray-400"
                       placeholder="Message*"
                       onChange={handlemessage}
                     ></textarea>
-                    
 
                     <div className="flex gap-x-2 ">
                       <Link
                         to={`mailto:${listing.landlordemail}?subject= Hi I,am ${username} Regarding ${listing.name}.Contact:${phone}&body=${message}`}
-                        className="bg-violet-700 text-center  hover:bg-violet-800 text-white rounded p-4 text-sm w-full transition"
+                        className="bg-blue-600 text-center  hover:bg-blue-400 text-white rounded p-4 text-sm w-full transition"
                       >
                         Send Message
                       </Link>
@@ -256,32 +269,30 @@ const Listing = () => {
                       {/* <button className='border border-violet-700 text-violet-700 hover:border-violet-500 hover:text-violet-500 rounded p-4 text-sm w-full transition'>call</button> */}
                     </div>
                   </form>
-                  
                 </div>
-                
               </div>
-              <div className="mt-5">
-                  <LoadScript
-                    googleMapsApiKey="AIzaSyCi5JCccOtbpIpgIQ0l1ES5RLd8QcMx8eQ"
-                    loadingElement={<div>Loading...</div>}
-                    libraries={["places"]}
+              <p className="text-md p-2">Locate Us On:</p>
+              <div className="mt-5 px-2">
+                <LoadScript
+                  googleMapsApiKey="AIzaSyCi5JCccOtbpIpgIQ0l1ES5RLd8QcMx8eQ"
+                  loadingElement={<div>Loading...</div>}
+                  libraries={["places"]}
+                >
+                  <GoogleMap
+                    mapContainerStyle={{ height: "400px", width: "100%" }}
+                    zoom={10}
+                    center={{ lat: listing.lat, lng: listing.lng }}
+                    onLoad={onLoad}
+                    // onClick={onMapClick}
                   >
-                    <GoogleMap
-                      mapContainerStyle={{ height: "400px", width: "100%" }}
-                      zoom={10}
-                      center={{ lat: listing.lat, lng: listing.lng }}
-                      onLoad={onLoad}
-                      // onClick={onMapClick}
-                    >
-                      {marker && <Marker position={marker} />}{" "}
-                    </GoogleMap>
-                  </LoadScript>
-          </div>
+                    {marker && <Marker position={marker} />}{" "}
+                  </GoogleMap>
+                </LoadScript>
+              </div>
             </div>
           )}
-          
         </section>
-        ;
+        {/* <Pano /> */}
       </main>
     </>
   );

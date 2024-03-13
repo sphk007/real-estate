@@ -76,7 +76,7 @@ export default function Home() {
       <section className='h-full max-h-[640px] mb-8 xl:mb-24 mt-10' >
       <div className='flex flex-col lg:flex-row'>
         <div className='lg:ml-8 xl:ml-[135px] flex flex-col items-center lg:items-start text-center lg:text-left justify-center flex-1 px-4 lg:px-0'>
-          <h1 className='text-4xl lg:text-[58px] font-semibold leading-none mb-6'><span className='text-violet-700'>DISCOVER</span>Your Dream House With Us</h1>
+          <h1 className='text-4xl lg:text-[58px] font-semibold leading-none mb-6'><span className='text-blue-600'>DISCOVER</span>Your Dream House With Us</h1>
           <p className='max-w-[480px] mb-8'>Browse our curated selection of properties, ranging from urban apartments to suburban homes and luxurious estates. Each listing is meticulously vetted to ensure quality and value, providing you with confidence in your decision-making process.Trust our team of seasoned professionals to market your property effectively and negotiate on your behalf. With a strategic approach and attention to detail, we maximize your property's exposure and optimize its sale price, delivering results that exceed your expectations.</p>
         </div>
         {/*img*/}

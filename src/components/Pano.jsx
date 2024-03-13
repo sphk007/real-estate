@@ -3,8 +3,10 @@ import { Pannellum } from "pannellum-react";
 
 import fantasyNight from '../assets/img/image1.jpeg'
 // import fantasyCave from '../assets/img/fantasy_cave.jfif'
-const Pano = () => {
-  const [currentScene, setCurrentScene] = useState(fantasyNight);
+export default function Pano ({imageUrl}) {
+    console.log(imageUrl)
+//   const [currentScene, setCurrentScene] = useState(fantasyNight);
+
 
   return (
     <>
@@ -12,7 +14,7 @@ const Pano = () => {
             <Pannellum
                 width="100%"
                 height="100%"
-                image={currentScene}
+                image={fantasyNight}
                 yaw={300}
                 hfov={110}
                 autoLoad
@@ -40,4 +42,4 @@ const Pano = () => {
 };
 
 
-export default Pano;
+// export default Pano;

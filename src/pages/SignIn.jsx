@@ -58,7 +58,7 @@ const signIn = () => {
                 <img src={image} className="object-cover overflow-hidden"></img>
               </div>
               <div className=" flex items-center flex-col justify-center md:w-1/2 py-10 px-10">
-                <h1 className=" text-violet-900 text-size-xl p-3 pb-8">SignIn</h1>
+                <h1 className=" text-blue-600 text-size-xl p-3 pb-8">SignIn</h1>
                 <form
                   onSubmit={handleSubmit}
                   className="flex flex-col gap-6 w-10/12"
@@ -79,7 +79,7 @@ const signIn = () => {
                   />
                   <button
                     type="submit"
-                    className=" bg-violet-900 px-2 py-2 rounded-lg text-white trasition ease-in-out hover:bg-gray-500 duration-300"
+                    className=" bg-blue-600 px-2 py-2 rounded-lg text-white trasition ease-in-out hover:bg-blue-500 duration-300"
                   >
                     {loading ? "loading..." : "SignIn"}
                   </button>
@@ -88,7 +88,7 @@ const signIn = () => {
                     <p>Dont have a account?</p>
                     <Link
                       to="/Signup"
-                      className="text-violet-900 cursor-pointer hover:underline"
+                      className="text-blue-600 cursor-pointer hover:underline"
                     >
                       SignUp
                     </Link>

@@ -5,6 +5,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+
 import { app } from "../firebase.js";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -28,9 +29,11 @@ const CreateListing = () => {
     furnished: false,
     lat: 0,
     lng: 0,
+    panorama:'',
   });
 
   const [imageUploadError, setImageUploadError] = useState(false);
+  const [file, setFile] = useState(undefined);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -45,14 +48,6 @@ const CreateListing = () => {
   console.log(markerPosition)
 
   console.log(formData);
-
-  // useEffect(() => {
-  //   if (files) {
-  //     handleImageSubmit(files);
-  //   }
-  //   console.log("Image URLs updated:", formData.imageURL);
-  // }, [formData.imageURL]);
-
 
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageURL.length < 7) {
@@ -120,7 +115,37 @@ const CreateListing = () => {
       imageURL: formData.imageURL.filter((_, i) => i !== index),
     });
   };
+  useEffect(() => {
+    if (file) {
+      handleFileUpload(file);
+    }
+  }, [file]);
 
+  const handleFileUpload = (file) => {
+    const storage = getStorage(app);
+    const fileName = new Date().getTime() + '_' + file.name; // Add a timestamp before the file name
+    const storageRef = ref(storage, fileName);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(progress)
+      },
+      (error) => {
+        console.log('Panorama image upload failed:', error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setFormData({ ...formData, panorama: downloadURL });
+          console.log("Panorama image uploaded successfully:", downloadURL);
+        });
+      }
+    );
+};
+  console.log(formData.panorama)
   const handleChange = (e) => {
   
     if(e.target.id === "property_type"){
@@ -240,7 +265,6 @@ const CreateListing = () => {
   }, [markerPosition]);
 
   const onMapClick = (event) => {
-    // Update marker position when map is clicked
     setMarkerPosition({
       lat: event.latLng.lat(),
       lng: event.latLng.lng(),
@@ -248,20 +272,7 @@ const CreateListing = () => {
   };
 
   console.log(formData);
-  // const onPlacesChanged = () => {
-  //   const service = new window.google.maps.places.PlacesService(map);
-  //   service.textSearch(
-  //     {
-  //       query: searchText,
-  //     },
-  //     (results, status) => {
-  //       if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-  //         setSearchResult(results[0]);
-  //         setCurrentLocation(results[0].geometry.location);
-  //       }
-  //     }
-  //   );
-  // };
+
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">
@@ -436,19 +447,62 @@ const CreateListing = () => {
               onChange={(e) => setFiles(e.target.files)}
               className="p-3 border border-gray-300 rounded w-full"
               type="file"
-              id="images"
+              id="panorama"
               accept="image/*"
               multiple
             />
+            
             <button
               disabled={uploading}
               onClick={handleImageSubmit}
+              type="button"
+              className="p-3 text-blue-600 border-2 border-blue-600 rounded uppercase hover:shadow-lg disabled:opacity-80"
+            >
+              {uploading ? "Uploading..." : "Upload"}
+            </button>
+          </div>
+          {/* <p className="font-semibold">
+            Upload your panorama image here:
+          </p> */}
+          {/* <div className="flex gap-4">
+            <input
+              onChange={(e) => setFile(e.target.files[0])}
+              className="p-3 border border-gray-300 rounded w-full"
+              type="file"
+              id="images"
+              accept="image/*"
+              // multiple
+            />
+            <button
+              disabled={uploading}
+              onClick={handleFileUpload}
               type="button"
               className="p-3 text-violet-900 border-2 border-violet-900 rounded uppercase hover:shadow-lg disabled:opacity-80"
             >
               {uploading ? "Uploading..." : "Upload"}
             </button>
-          </div>
+          </div> */}
+          {/* {formData.panorama !=='' &&
+            // formData.imageURL.map((url, index) => (
+              <div
+               
+                className="flex justify-between p-3 border items-center"
+              >
+                <img
+                  src={formData.panorama}
+                  alt="listing image"
+                  className="w-20 h-20 object-contain rounded-lg"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleRemoveImage(index)}
+                  className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75"
+                >
+                  Delete
+                </button>
+              </div>
+              
+              } */}
           <p className="text-red-700 text-sm">
             {imageUploadError && imageUploadError}
           </p>
@@ -466,7 +520,7 @@ const CreateListing = () => {
                 <button
                   type="button"
                   onClick={() => handleRemoveImage(index)}
-                  className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75"
+                  className="text-white bg-red-700 p-2 rounded-lg uppercase hover:opacity-75"
                 >
                   Delete
                 </button>
@@ -474,7 +528,7 @@ const CreateListing = () => {
             ))}
           <button
             disabled={loading || uploading}
-            className="p-3 bg-violet-900 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            className="p-3 bg-blue-600 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
           >
             {loading ? "Creating..." : "Create Property"}
           </button>
@@ -482,6 +536,7 @@ const CreateListing = () => {
         </div>
       </form>
       <div className="mt-5 ">
+        <p className="text-gray-900 text-lg py-4">Locate the Property:</p>
       <LoadScript googleMapsApiKey="AIzaSyCi5JCccOtbpIpgIQ0l1ES5RLd8QcMx8eQ" >
       <GoogleMap
         mapContainerStyle={mapStyles}

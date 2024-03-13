@@ -13,9 +13,9 @@ import image7 from '../assets/img/agents/client3.jpeg';
  const About=()=>
  {
     return(
-        <body class="bg-violet-100 text-gray-900 tracking-wider leading-normal">
+        <body class="bg-blue-100 text-gray-900 tracking-wider leading-normal">
 
-<div class="bg-violet-500 py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+<div class="bg-blue-600 py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
     <div class="relative max-w-xl mx-auto">
         <svg class="absolute left-full transform translate-x-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" aria-hidden="true">
             <defs>
@@ -39,7 +39,7 @@ import image7 from '../assets/img/agents/client3.jpeg';
 <div class="py-12 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="lg:text-center">
-            <p class="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">Our Mission</p>
+            <p class="text-base leading-6 text-blue-600 font-semibold tracking-wide uppercase">Our Mission</p>
             <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                 A better way to buy and sell real estate
             </h3>
@@ -52,7 +52,7 @@ import image7 from '../assets/img/agents/client3.jpeg';
             <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
                 <div class="relative">
                     <dt>
-                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l-5.5 9h11z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v17m0 0h-5.5m5.5 0H17" />
@@ -68,7 +68,7 @@ import image7 from '../assets/img/agents/client3.jpeg';
 
                 <div class="relative">
                     <dt>
-                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                        <div class="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a2 2 0 011-1.73l.51-.29h.98l.51.29A2 2 0 017 4" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16" />
@@ -88,7 +88,7 @@ import image7 from '../assets/img/agents/client3.jpeg';
     </div>
 </div>
 
-<div class="bg-gray-600">
+<div class="bg-blue-400">
     <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-extrabold text-white">Meet Our Team</h2>
         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
