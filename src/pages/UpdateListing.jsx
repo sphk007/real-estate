@@ -1,4 +1,4 @@
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   getDownloadURL,
   getStorage,
@@ -52,7 +52,7 @@ const UpdateListing = () => {
     const fetchListing = async () => {
       const listingId = params.id;
       // console.log(listingId);
-      const res = await fetch(`/api/listing/get/${listingId}`);
+      const res = await fetch(`https://homesphere-api.vercel.app/api/listing/get/${listingId}`);
       const data = await res.json();
       if (data.success === false) {
         console.log(data.message);
@@ -181,7 +181,7 @@ const UpdateListing = () => {
       setLoading(true);
       setError(false);
 
-      const res = await fetch(`/api/listing/update/${params.id}`, {
+      const res = await fetch(`https://homesphere-api.vercel.app/api/listing/update/${params.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -498,7 +498,7 @@ const UpdateListing = () => {
         </div>
       </form>
       <div className="mt-5">
-      <p className="text-gray-900 text-lg py-4">Locate the Property:</p>
+        <p className="text-gray-900 text-lg py-4">Locate the Property:</p>
         <LoadScript
           googleMapsApiKey="AIzaSyCi5JCccOtbpIpgIQ0l1ES5RLd8QcMx8eQ"
           loadingElement={<div>Loading...</div>}
@@ -510,7 +510,7 @@ const UpdateListing = () => {
             center={{ lat: formData.lat, lng: formData.lng }}
             onLoad={onLoad}
             onClick={onMapClick}
-            
+
           >
             {marker && <Marker position={marker} />}{" "}
           </GoogleMap>

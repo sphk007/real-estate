@@ -9,7 +9,7 @@ const Contact = ({ listing }) => {
     const fetchLandlord = async () => {
       try {
         console.log(listing.userRef)
-        const res = await fetch(`/api/user/${listing.userRef}`);
+        const res = await fetch(`https://homesphere-api.vercel.app/api/user/${listing.userRef}`);
         const data = await res.json();
         // console.log(data);
         if (data.success === false) {
@@ -25,7 +25,7 @@ const Contact = ({ listing }) => {
   }, [listing.userRef]);
 
 
-  const onChange=(e)=>{
+  const onChange = (e) => {
     setMessage(e.target.value);
   }
 
@@ -60,7 +60,7 @@ const Contact = ({ listing }) => {
             </Link>
           </div>
         )}
-        
+
       </div>
     </>
   );

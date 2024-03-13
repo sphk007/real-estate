@@ -79,7 +79,7 @@ const Profile = () => {
     try {
       dispatch(updateUserStart());
       // console.log(currentUser._id)
-      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+      const res = await fetch(`https://homesphere-api.vercel.app/api/user/update/${currentUser._id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -103,7 +103,7 @@ const Profile = () => {
   const handleDeleteUser = async () => {
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`https://homesphere-api.vercel.app/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
       });
       const data = await res.json();
@@ -137,7 +137,7 @@ const Profile = () => {
   const handleShowListings = async () => {
     try {
       setShowListingsError(false);
-      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const res = await fetch(`https://homesphere-api.vercel.app/api/user/listings/${currentUser._id}`);
       const data = await res.json();
 
       if (data.success === false) {
@@ -153,22 +153,22 @@ const Profile = () => {
 
   const handleListingDelete = async (listingId) => {
     try {
-      const res = await fetch(`/api/listing/delete/${listingId}`, {
+      const res = await fetch(`https://homesphere-api.vercel.app/api/listing/delete/${listingId}`, {
         method: "DELETE",
-        });
+      });
 
-        const data = await res.json();
-        if (data.success === false) {
-          console.log(error.message);
-          return; 
-        }
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(error.message);
+        return;
+      }
 
-        setUserListings((prev) => prev.filter((listing) => (listing._id !== listingId)));
+      setUserListings((prev) => prev.filter((listing) => (listing._id !== listingId)));
 
 
 
     } catch (error) {
-      console.log(error.message);      
+      console.log(error.message);
     }
 
   };
@@ -185,61 +185,61 @@ const Profile = () => {
             hidden
             accept="image/*"
           />
-          
+
           <img
             src={formData.avatar || currentUser.avatar}
             onClick={() => fileRef.current.click()}
             className="rounded-full h-28 w-28 sm:h-56 sm:w-56 object-cover cursor-pointer self-center mt-2"
           />
           <div className=" w-full flex flex-col gap-3">
-          <input
-            id="username"
-            type="text"
-            defaultValue={currentUser.username}
-            onChange={handleChange}
-            placeholder="username"
-            className="border-2 p-3 rounded-lg"
-          />
-          <input
-            id="email"
-            type="email"
-            defaultValue={currentUser.email}
-            onChange={handleChange}
-            placeholder="Email"
-            className="border-2 p-3 rounded-lg"
-          />
-          <input
-            id="password"
-            type="password"
-            placeholder="Change password"
-            onChange={handleChange}
-            className="border-2 p-3 rounded-lg"
-          />
+            <input
+              id="username"
+              type="text"
+              defaultValue={currentUser.username}
+              onChange={handleChange}
+              placeholder="username"
+              className="border-2 p-3 rounded-lg"
+            />
+            <input
+              id="email"
+              type="email"
+              defaultValue={currentUser.email}
+              onChange={handleChange}
+              placeholder="Email"
+              className="border-2 p-3 rounded-lg"
+            />
+            <input
+              id="password"
+              type="password"
+              placeholder="Change password"
+              onChange={handleChange}
+              className="border-2 p-3 rounded-lg"
+            />
           </div>
         </form>
         <p className="text-sm self-center mt-2">
-            {fileUploadError ? (
-              <span className="text-red-700">
-                Error Image upload (image must be less than 2 mb)
-              </span>
-            ) : filePerc > 0 && filePerc < 100 ? (
-              <span className="text-slate-700">{`Uploading ${filePerc}%`}</span>
-            ) : filePerc === 100 ? (
-              <span className="text-green-700">
-                Image successfully uploaded!
-              </span>
-            ) : (
-              ""
-            )}
-          </p>
-          <button
-            disabled={loading}
-            onClick={handleSubmit}
-            className="w-full mt-5 bg-blue-600 self-end text-white p-[1rem] rounded-lg uppercase text-center hover:opacity-50"
-            type="submit"
-          >
-            {loading ? "loading..." : "Update"}
-          </button>
+          {fileUploadError ? (
+            <span className="text-red-700">
+              Error Image upload (image must be less than 2 mb)
+            </span>
+          ) : filePerc > 0 && filePerc < 100 ? (
+            <span className="text-slate-700">{`Uploading ${filePerc}%`}</span>
+          ) : filePerc === 100 ? (
+            <span className="text-green-700">
+              Image successfully uploaded!
+            </span>
+          ) : (
+            ""
+          )}
+        </p>
+        <button
+          disabled={loading}
+          onClick={handleSubmit}
+          className="w-full mt-5 bg-blue-600 self-end text-white p-[1rem] rounded-lg uppercase text-center hover:opacity-50"
+          type="submit"
+        >
+          {loading ? "loading..." : "Update"}
+        </button>
         <button className="w-full mt-3 text-blue-600 p-3 rounded-lg uppercase text-center hover:opacity-95 border-solid border-2 border-blue-500">
           <Link
             to={"/create-listing"}
@@ -267,7 +267,7 @@ const Profile = () => {
             sign out <GoSignOut />
           </span>
         </div>
-        
+
         <p className="text-red-700 mt-5">
           {showListingsError ? "error showing listing" : ""}
         </p>
