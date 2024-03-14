@@ -52,7 +52,7 @@ const UpdateListing = () => {
     const fetchListing = async () => {
       const listingId = params.id;
       // console.log(listingId);
-      const res = await fetch(`https://homesphere-api.vercel.app/api/listing/get/${listingId}`);
+      const res = await fetch(`/api/listing/get/${listingId}`);
       const data = await res.json();
       if (data.success === false) {
         console.log(data.message);
@@ -181,7 +181,7 @@ const UpdateListing = () => {
       setLoading(true);
       setError(false);
 
-      const res = await fetch(`https://homesphere-api.vercel.app/api/listing/update/${params.id}`, {
+      const res = await fetch(`/api/listing/update/${params.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
